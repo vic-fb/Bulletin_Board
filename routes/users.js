@@ -47,7 +47,7 @@ router.post('/', async(req, res) => {
   }
 });
 
-/* DELETE new user */
+/* DELETE user */
 router.delete('/:id', async (req, res) => {
   try {
     let user = await db(`SELECT * FROM users WHERE id = ${req.params.id}`);
