@@ -24,6 +24,6 @@ app.use('/users', usersRouter);
 
 app.use('/classrooms', classroomsRouter);
 
-app.use('/studentProjects', studentProjectsRouter);
+app.use('/student-projects', studentProjectsRouter);
 
 module.exports = app;
