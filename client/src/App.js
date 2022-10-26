@@ -55,7 +55,7 @@ function App() {
       <Routes>
           <Route path="/" element={<HomeView classrooms={classrooms}/>} />
           <Route path="classrooms/:id" element={<ClassroomView classrooms={classrooms} studentProjects={studentProjects}/>} />
-          <Route path="student-projects/:id" element={<StudentProjectView userCount={users.length} />} />
+          <Route path="student-projects/:id" element={<StudentProjectView studentProjects={studentProjects} />} />
           {/* 
           <Route path="users" element={<UsersView users={users} />} />
           <Route path="users/:id" element={<UserProfileView users={users} />} />

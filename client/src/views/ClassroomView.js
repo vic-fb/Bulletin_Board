@@ -14,7 +14,7 @@ function ClassroomView(props) {
                 {
                     projects.map((p) => (
                         <h3 key={p.id} value={p.id}>
-                           <Link to={`/student-project/${p.id}`}> {p.title} </Link>
+                           <Link to={`/student-projects/${p.id}`}> {p.title} </Link>
                         </h3>
                     ))
                 }
