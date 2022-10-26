@@ -15,7 +15,7 @@ function StudentProjectView(props) {
             <p>{project.description}</p>
            
             <img alt={project.title} src={project.image_url}/>
-            <a href={`${project.project_url}`}>Check out my project</a>
+            <a href={`${project.project_url}`} target='_blank'>Check out my project</a>
            
             <Link to={`/classrooms/${project.classroom_id}`}>Back to Classroom</Link>
         </div>
