@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import HomeView from './views/HomeView';
 import ClassroomView from './views/ClassroomView';
+import StudentProjectView from './views/StudentProjectView';
 
 function App() {
   let [users, setUsers] = useState([]);
@@ -54,7 +55,8 @@ function App() {
       <Routes>
           <Route path="/" element={<HomeView classrooms={classrooms}/>} />
           <Route path="classrooms/:id" element={<ClassroomView classrooms={classrooms} studentProjects={studentProjects}/>} />
-          {/* <Route path="about" element={<AboutView userCount={users.length} />} />
+          <Route path="student-projects/:id" element={<StudentProjectView userCount={users.length} />} />
+          {/* 
           <Route path="users" element={<UsersView users={users} />} />
           <Route path="users/:id" element={<UserProfileView users={users} />} />
           <Route path="add-user" element={<AddUserView addUserCb={name => addUser(name)} />} />

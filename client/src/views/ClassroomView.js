@@ -14,15 +14,15 @@ function ClassroomView(props) {
                 {
                     projects.map((p) => (
                         <h3 key={p.id} value={p.id}>
-                            {p.title}
-                            {/* <img url={p.image_url}/> */}
+                           <Link to={`/student-project/${p.id}`}> {p.title} </Link>
                         </h3>
                     ))
                 }
             </div>
-            <Link to="/">Back to Select Classrooms</Link>
+            <Link to="/">Back to Classroom Selection</Link>
         </div>
     );
 }
 
 export default ClassroomView;
+
