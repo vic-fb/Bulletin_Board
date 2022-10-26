@@ -10,7 +10,16 @@ function ClassroomView(props) {
     return (
         <div className="ClassroomView">
             <h2>Welcome to the Bulletin Board for {classroom.classroom_name}!</h2>
-          
+            <div>
+                {
+                    props.studentProjects.map((p) => (
+                        <h3 key={p.id} value={p.id}>
+                            {p.title}
+                            {/* <img url={p.image_url}/> */}
+                        </h3>
+                    ))
+                }
+            </div>
         </div>
     );
 }

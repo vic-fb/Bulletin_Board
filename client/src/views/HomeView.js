@@ -11,7 +11,10 @@ function HomeView(props) {
         setOptions(temp);
       }, [props.classrooms]); // call whenever classrooms changes
 
-   function generateOptions() {
+/* had to create generateOptions() outside rendering statement b/c page was 
+being drawn before classrooms was loaded, so had to create options state and 
+useEffect function to make sure data was available before page was rendered*/
+   function generateOptions() {  
         return props.classrooms.map((c) => (
             <option key={c.id} value={c.id}>
                 {c.classroom_name}

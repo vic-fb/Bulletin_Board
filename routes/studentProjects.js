@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
   });
   
-  /* GET project by ID. */
+  /* GET project by project ID. */
   router.get('/:id', async (req, res) => {
     
     try {
@@ -33,8 +33,8 @@ router.get('/', async (req, res) => {
   router.post('/', async(req, res) => {
     
     let sql = `
-      INSERT INTO student_projects (title, description, image_url, project_url, user_id)
-      VALUES ('${req.body.title}', '${req.body.description}', '${req.body.image_url}', '${req.body.project_url}', ${req.body.user_id})
+      INSERT INTO student_projects (title, description, image_url, project_url, user_id, classroom_id)
+      VALUES ('${req.body.title}', '${req.body.description}', '${req.body.image_url}', '${req.body.project_url}', ${req.body.user_id}, ${req.body.classroom_id})
     `;
   
     try {
