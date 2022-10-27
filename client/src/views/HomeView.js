@@ -1,5 +1,5 @@
 import React , {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 function HomeView(props) {
@@ -22,21 +22,30 @@ useEffect function to make sure data was available before page was rendered*/
         ))
     }
 
-    function handleChange(e) {
+    function handleClick(e) {
         let id = e.target.value
         navigate(`/classrooms/${id}`);  // redirect to specific classroom
     }
 
     return (
         <div className="HomeView">
+            <nav className="NavBar">
+                <ul>
+                    <li><Link to={`/add-project`}>Add a Student Project</Link></li>
+                    <li><Link to={`/add-classroom`}>Set up a New Classroom</Link></li>
+                </ul>
+            </nav>
+            
             <h2>Welcome to Bulletin Board!</h2>
             
             <form>
                 <label>Choose a classroom from the menu below to get started.</label>
-                <select id="classroom" name="classroom" onClick={handleChange}>
+                <select id="classroom" name="classroom" onClick={handleClick}>
                 {options}
                 </select>
             </form>
+
+
         </div>
     );
 }

@@ -5,12 +5,13 @@ import { Link, useParams } from 'react-router-dom';
 function StudentProjectView(props) {
     let { id } = useParams();
     let project = props.studentProjects.find(p => p.id === Number(id));
+    let user = props.users.find(u => u.id === project.user_id);
     
 
     return (
         
         <div className="StudentProjectView">
-            <h2>STUDENT'S NAME</h2>
+            <h2>Welcome to {user.first_name}'s project page!</h2>
             <h3>{project.title}</h3>
             <p>{project.description}</p>
            

@@ -4,6 +4,9 @@ import './App.css';
 import HomeView from './views/HomeView';
 import ClassroomView from './views/ClassroomView';
 import StudentProjectView from './views/StudentProjectView';
+import StudentAdminView from './views/StudentAdminView';
+import TeacherAdminView from './views/TeacherAdminView';
+
 
 function App() {
   let [users, setUsers] = useState([]);
@@ -55,12 +58,9 @@ function App() {
       <Routes>
           <Route path="/" element={<HomeView classrooms={classrooms}/>} />
           <Route path="classrooms/:id" element={<ClassroomView classrooms={classrooms} studentProjects={studentProjects}/>} />
-          <Route path="student-projects/:id" element={<StudentProjectView studentProjects={studentProjects} />} />
-          {/* 
-          <Route path="users" element={<UsersView users={users} />} />
-          <Route path="users/:id" element={<UserProfileView users={users} />} />
-          <Route path="add-user" element={<AddUserView addUserCb={name => addUser(name)} />} />
-          <Route path="*" element={<Error404View />} /> */}
+          <Route path="student-projects/:id" element={<StudentProjectView users={users} studentProjects={studentProjects} />} />
+          <Route path="add-project" element={<StudentAdminView users={users} classrooms={classrooms}/>} />
+          <Route path="add-classroom" element={<TeacherAdminView users={users} classrooms={classrooms}/>} />
       </Routes>
       
 
