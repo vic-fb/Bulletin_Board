@@ -13,7 +13,7 @@ function TeacherAdminView(props) {
         
         <AddClassroomForm />
         
-        <h2>Fill out all the fields the form below to update an EXISTING classroom.</h2>
+        <h2>Fill out the form below to add a NEW student to an EXISTING classroom.</h2>
         
         {/* BELOW FORM NOT YET CREATED */}
         {/* <UpdateClassroomForm /> */}

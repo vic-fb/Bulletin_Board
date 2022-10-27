@@ -33,48 +33,38 @@ function AddClassroomForm(props) {
 
     return (
         //upon log-in, user_id will be automatically collected
-        <div className="AddProjectForm">
+        <div className="AddClassroomForm">
             <form onSubmit={handleSubmit}>
-                {/* <label>
-                    Project Title
+                <label>
+                    Classroom Name
                     <input
                         type="text"
-                        name="title"
-                        value={projectFormData.title}
+                        name="classroom_name"
+                        value={classroomFormData.classroom_name}
                         onChange={e => handleChange(e)}
                     />
                 </label>
 
                 <label>
-                    Project Description
+                    Assignment Title
+                    <input
+                        type="text"
+                        name="assignment_title"
+                        value={classroomFormData.assignment_title}
+                        onChange={e => handleChange(e)}
+                    />
+                </label>
+
+                <label>
+                    Assignment Description
                     <textarea
                         type="text"
-                        name="description"
-                        value={projectFormData.description}
+                        name="assignment_desc"
+                        value={classroomFormData.assignment_desc}
                         onChange={e => handleChange(e)}
                     >
                     </textarea>
                 </label>
-
-                <label>
-                    Image Link
-                    <input
-                        type="url"
-                        name="image_url"
-                        value={projectFormData.image_url}
-                        onChange={e => handleChange(e)}
-                    />
-                </label>
-
-                <label>
-                    Project Link
-                    <input
-                        type="url"
-                        name="project_url"
-                        value={projectFormData.project_url}
-                        onChange={e => handleChange(e)}
-                    />
-                </label> */}
 
                 <button type="submit">Add Classroom</button>
             </form> 
