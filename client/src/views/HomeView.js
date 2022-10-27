@@ -32,7 +32,7 @@ useEffect function to make sure data was available before page was rendered*/
             <nav className="NavBar">
                 <ul>
                     <li><Link to={`/add-project`}>Add a Student Project</Link></li>
-                    <li><Link to={`/add-classroom`}>Set up a New Classroom</Link></li>
+                    <li><Link to={`/add-classroom`}>Set up Your Classroom</Link></li>
                 </ul>
             </nav>
             

@@ -7,6 +7,11 @@ function StudentProjectView(props) {
     let project = props.studentProjects.find(p => p.id === Number(id));
     let user = props.users.find(u => u.id === project.user_id);
     
+    if (props.users.length === 0 || project.length === 0) {
+        return (
+            <h2>Loading</h2>
+        )
+    }
 
     return (
         

@@ -7,6 +7,12 @@ function ClassroomView(props) {
     let classroom = props.classrooms.find(c => c.id === Number(id));
     let projects = props.studentProjects.filter(p => p.classroom_id === Number(id));
 
+    if (props.classrooms.length === 0 || props.studentProjects.length === 0) {
+        return (
+            <h2>Loading</h2>
+        )
+    }
+    
     return (
         <div className="ClassroomView">
             <h2>Welcome to the Bulletin Board for {classroom.classroom_name}!</h2>
