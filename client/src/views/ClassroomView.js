@@ -15,6 +15,10 @@ function ClassroomView(props) {
     
     return (
         <div className="ClassroomView">
+            <nav className="NavBar">
+                <Link to={`/edit-classroom`}>Edit Your Classroom</Link>
+            </nav>
+
             <h2>Welcome to the Bulletin Board for {classroom.classroom_name}!</h2>
             <div>
                 {

@@ -30,12 +30,8 @@ useEffect function to make sure data was available before page was rendered*/
     return (
         <div className="HomeView">
             <nav className="NavBar">
-                <ul>
-                    <li><Link to={`/add-project`}>Add a Student Project</Link></li>
-                    <li><Link to={`/add-classroom`}>Set up Your Classroom</Link></li>
-                </ul>
+                <Link to={`/add-classroom`}>Add a New Classroom</Link>
             </nav>
-            
             <h2>Welcome to Bulletin Board!</h2>
             
             <form>

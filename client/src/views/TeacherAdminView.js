@@ -9,10 +9,14 @@ function TeacherAdminView(props) {
   
     return (
       <div className="TeacherAdminView">
-        <h2>Fill out all the fields the form below to add a new classroom.</h2>
+        <h2>Fill out all the fields the form below to add a NEW classroom.</h2>
         
         <AddClassroomForm />
         
+        <h2>Fill out all the fields the form below to update an EXISTING classroom.</h2>
+        
+        {/* BELOW FORM NOT YET CREATED */}
+        {/* <UpdateClassroomForm /> */}
   
       </div>
     );

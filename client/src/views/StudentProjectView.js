@@ -16,6 +16,11 @@ function StudentProjectView(props) {
     return (
         
         <div className="StudentProjectView">
+            <nav className="NavBar">
+                <Link to='student-projects/:id/add-project'>Display a New Project</Link>
+                {/* <Link to='/add-project'>Display a New Project</Link> */}
+            </nav>
+
             <h2>Welcome to {user.first_name}'s project page!</h2>
             <h3>{project.title}</h3>
             <p>{project.description}</p>

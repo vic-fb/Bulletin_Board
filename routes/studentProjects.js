@@ -46,7 +46,29 @@ router.get('/', async (req, res) => {
       res.status(500).send({ error: err.message })
     }
   });
-  
+
+  /* PUT new project (replace existing with new) */
+  router.put('/:id', async (req, res) => {
+    let sql = `
+      INSERT INTO student_projects (title, description, image_url, project_url, user_id, classroom_id)
+      VALUES ('${req.body.title}', '${req.body.description}', '${req.body.image_url}', '${req.body.project_url}', ${req.body.user_id}, ${req.body.classroom_id})
+    `;
+
+    try {
+      let project = await db(`SELECT * FROM student_projects WHERE id = ${req.params.id}`);
+      if (project.data.length === 0){
+        res.status(404).send({ error: "There is no existing project to replace."})
+      } else {
+        await db(`DELETE FROM student_projects WHERE id = ${req.params.id}`);
+        await db(sql);
+        let result = await db(`SELECT * FROM student_projects`);
+        res.status(201).send(result.data);
+      }
+    } catch (err) {
+      res.status(500).send({error: err.message})
+    }
+  });
+
   /* DELETE user */
   router.delete('/:id', async (req, res) => {
     try {
