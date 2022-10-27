@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
     }
   });
 
-  /* DELETE user */
+  /* DELETE project */
   router.delete('/:id', async (req, res) => {
     try {
       let project = await db(`SELECT * FROM student_projects WHERE id = ${req.params.id}`);

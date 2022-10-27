@@ -6,6 +6,7 @@ function ClassroomView(props) {
     let { id } = useParams();
     let classroom = props.classrooms.find(c => c.id === Number(id));
     let projects = props.studentProjects.filter(p => p.classroom_id === Number(id));
+    let student = props.users.find(s => s.id === projects.user_id);
 
     if (props.classrooms.length === 0 || props.studentProjects.length === 0) {
         return (
@@ -29,6 +30,22 @@ function ClassroomView(props) {
                     ))
                 }
             </div>
+
+            {/* <div class="card" style="width: 18rem;">
+                {
+                    projects.map((p) => (
+                        <>
+                        <img src={`${p.image_url}`} className="card-img-top" alt={`${p.title}`}/>
+                        <div className="card-body">
+                            <h5 className="card-title">{p.title}</h5>
+                            <h6 className="card-text">{student}</h6>
+                            <Link to={`/student-projects/${p.id}`} className="btn btn-primary">View Project</Link>
+                        </div>
+                        </>
+                    ))
+                }
+                
+            </div> */}
             <Link to="/">Back to Classroom Selection</Link>
         </div>
     );

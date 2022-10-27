@@ -1,21 +1,26 @@
 import React, {useState} from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useParams, useOutletContext} from 'react-router-dom';
 
 
 function AddProjectForm(props) {
+    let { id } = useParams();
+   
+
+    let project = props.studentProjects.find(p => p.id === Number(id));
+    let userId = project.user_id;
+    let classroomId = project.classroom_id;
+
     let EMPTY_FORM = {
-        user_id: '',
+        user_id: `${userId}`,
         title: '',
         description: '',
         image_url: '',
         project_url: '',
-        classroom_id: ''
+        classroom_id: `${classroomId}`
     }
-    
-    let { id } = useParams();
-    const navigate = useNavigate();
 
     let [projectFormData, setProjectFormData] = useState(EMPTY_FORM);
+    const [toggleView] = useOutletContext();
 
     function handleChange(event) {
         const value = event.target.value;
@@ -32,7 +37,7 @@ function AddProjectForm(props) {
         event.preventDefault();
         props.addNewProjectCb(projectFormData);
         setProjectFormData(EMPTY_FORM);
-        navigate(`/student-projects/${id}`);
+        toggleView();
     }
 
     return (

@@ -10,7 +10,11 @@ function StudentAdminView(props) {
       <div className="StudentAdminView">
         <h2>Fill out all the fields the form below to post your latest project.</h2>
         
-        <AddProjectForm />
+        <AddProjectForm 
+            toggleViewCb={props.toggleViewCb} 
+            studentProjects={props.studentProjects}
+            addNewProjectCb={props.addNewProjectCb}
+            />
         
   
       </div>

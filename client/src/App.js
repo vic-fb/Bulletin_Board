@@ -8,11 +8,14 @@ import StudentAdminView from './views/StudentAdminView';
 import TeacherAdminView from './views/TeacherAdminView';
 
 
-function App() {
+function App(props) {
   let [users, setUsers] = useState([]);
   let [classrooms, setClassrooms] = useState([]);
   let [studentProjects, setStudentProjects] = useState([]);
-
+ 
+  const navigate = useNavigate();
+  
+ 
   useEffect(() => {
     getUsers();
     getClassrooms();
@@ -52,7 +55,8 @@ function App() {
     });
   };
 
-  
+  // console.log(typeof studentProjects);
+
   const addNewProject = (newProject) => {
     let postOptions = {
       method: 'POST',
@@ -82,6 +86,7 @@ function App() {
         .then(res => res.json())
         .then(json => {
           setStudentProjects(json);
+          navigate(`/student-projects/${json[json.length - 1].id}`);
         })
       .catch(error => {
         console.log(error.message);
@@ -106,16 +111,43 @@ function App() {
       });  
   }
 
+
+  const addStudent = (newStudent) => {
+    let postOptions = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newStudent)
+    }
+ 
+      fetch('/student-projects', postOptions)
+        .then(res => res.json())
+        .then(json => {
+          setUsers(json);
+        })
+      .catch(error => {
+        console.log(error.message);
+      });  
+  }
+
+
   return (
     <div className="App">
       
       <Routes>
           <Route path="/" element={<HomeView classrooms={classrooms}/>} />
-          <Route path="classrooms/:id" element={<ClassroomView classrooms={classrooms} studentProjects={studentProjects}/>} />
-          <Route path="student-projects/:id" element={<StudentProjectView users={users} studentProjects={studentProjects} />} />
-          <Route path="student-projects/:id/add-project" element={<StudentAdminView addNewProjectCb={addNewProject}/>} />
-          {/* <Route path='/add-project' element={<StudentAdminView users={users} classrooms={classrooms} studentProjects={studentProjects}/>} /> */}
-          <Route path={`add-classroom`} element={<TeacherAdminView addNewClassroomCb={addNewClassroom}/>} />
+          <Route path="classrooms/:id" element={<ClassroomView classrooms={classrooms} studentProjects={studentProjects} users={users}/>} />
+          
+          <Route path="student-projects/:id" element={<StudentProjectView 
+              users={users} 
+              studentProjects={studentProjects} 
+              toggleViewCb={props.toggleView}/>} >
+              <Route path="add-project" element={<StudentAdminView 
+                  addNewProjectCb={addNewProject} 
+                  toggleViewCb={props.toggleViewCb}
+                  studentProjects={studentProjects}/>} />
+          </Route>
+         
+          <Route path={`add-classroom`} element={<TeacherAdminView addNewClassroomCb={addNewClassroom} addStudentCb={addStudent}/>} />
       </Routes>
       
 
