@@ -82,10 +82,11 @@ function AddUserForm(props) {
                 </label>
 
                 <label>Classroom</label>
-                <select id="classroom" name="classroom" onClick={e => handleChange(e)}>
-                    {
-                        props.options
-                    }
+                <select id="classroom" 
+                    name="classroom_id" 
+                    value={userFormData.classroom_id} 
+                    onChange={e => handleChange(e)}>
+                    {props.options}
                 </select>
 
                 <button type="submit">Add User</button>
@@ -95,3 +96,4 @@ function AddUserForm(props) {
 }
 
 export default AddUserForm;
+
