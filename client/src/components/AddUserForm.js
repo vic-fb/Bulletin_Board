@@ -30,7 +30,7 @@ function AddUserForm(props) {
         console.log(userFormData);
         props.addUserCb(userFormData);
         setUserFormData(EMPTY_FORM);
-        navigate(`/`);
+        navigate(`/classrooms/${userFormData.classroom_id}`);
     }
 
     return (
