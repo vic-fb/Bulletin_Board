@@ -7,9 +7,11 @@ function HomeView(props) {
     let [options, setOptions] = useState([]);
     const navigate = useNavigate();
     
+
     useEffect(() => {
         let temp = generateOptions()
         setOptions(temp);
+        props.getOptionsCb(options);
       }, [props.classrooms]); // call whenever classrooms changes
 
 /* had to create generateOptions() outside rendering statement b/c page was 
@@ -28,10 +30,11 @@ useEffect function to make sure data was available before page was rendered*/
         navigate(`/classrooms/${id}`);  // redirect to specific classroom
     }
 
+
     return (
         <div className="HomeView">
             <nav className="NavBar">
-                <Link to={`/add-classroom`}>Add a New Classroom</Link>
+                <Link to={`/add-classroom`}>Teacher Admin</Link>
             </nav>
             <h1>Welcome to Bulletin Board!</h1>
             

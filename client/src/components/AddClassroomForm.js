@@ -1,8 +1,8 @@
 import React, { useState} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
-function AddClassroomForm(props) {
+function AddTeacherForm(props) {
     let EMPTY_FORM = {
         classroom_name: '',
         assignment_title: '',
@@ -26,15 +26,16 @@ function AddClassroomForm(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        // props.addNewClassroomCb(classroomFormData); NOT WORKING for some reason
+        props.addClassroomCb(classroomFormData)
         setClassroomFormData(EMPTY_FORM);
         navigate(`/`);
     }
 
     return (
         //upon log-in, user_id will be automatically collected
-        <div className="AddClassroomForm">
+        <div className="AddTeacherForm">
             <form onSubmit={handleSubmit}>
+                
                 <label>
                     Classroom Name
                     <input
@@ -72,4 +73,4 @@ function AddClassroomForm(props) {
     );
 }
 
-export default AddClassroomForm;
+export default AddTeacherForm;

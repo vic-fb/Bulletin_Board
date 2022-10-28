@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from 'react';
 // import { Route, Routes, useNavigate } from 'react-router-dom';
-import AddClassroomForm from '../components/AddClassroomForm';
-import AddStudentForm from '../components/AddStudentForm';
+import AddClassroomForm from'../components/AddClassroomForm';
+import AddUserForm from '../components/AddUserForm';
 
 function TeacherAdminView(props) {
    
@@ -9,16 +9,18 @@ function TeacherAdminView(props) {
       <div className="TeacherAdminView">
         <h1>Teacher Admin Hub</h1>
 
-        <h2>Fill out all the fields the form below to add a new CLASSROOM.</h2>
+        <h2>Start a new CLASSROOM</h2>
         
-        <AddClassroomForm />
+        <AddClassroomForm addClassroomCb={props.addClassroomCb}/>
         
-        <h2>Fill out the form below to add a new student to your classroom.</h2>
+        <h2>Add a new USER</h2>
         
-        <AddStudentForm />
+        <AddUserForm addUserCb={props.addUserCb} options={props.options}/>
   
       </div>
     );
   }
   
   export default TeacherAdminView;
+
+  // Think of new page name to reflect that teachers, classrooms, and students are being added/created
