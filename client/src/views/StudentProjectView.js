@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {  Outlet} from 'react-router-dom';
 import StudentProjectInfo from "../components/StudentProjectInfo"
-import "../StudentProjectView.css"
+
 
 function StudentProjectView(props) {
     

@@ -16,7 +16,8 @@ function UpdateProjectForm(props) {
         description: '',
         image_url: '',
         project_url: '',
-        classroom_id: `${classroomId}`
+        classroom_id: `${classroomId}`,
+        id: `${id}`
     }
 
     let [projectFormData, setProjectFormData] = useState(EMPTY_FORM);
@@ -85,7 +86,7 @@ function UpdateProjectForm(props) {
                     />
                 </label>
 
-                <button type="submit">Add Project</button>
+                <button type="submit">Update Project</button>
             </form> 
         </div>
     );

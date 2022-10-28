@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, Link, NavLink } from 'react-router-dom';
+import "../StudentProjectInfo.css"
 
 
 function StudentProjectInfo(props) {
@@ -18,19 +19,22 @@ function StudentProjectInfo(props) {
         <div className="StudentProjectInfo">
             <nav className="NavBar">
                 <NavLink to='update-project' onClick={props.toggleViewCb}>Display a New Project</NavLink>
+                <NavLink to={`/classrooms/${project.classroom_id}`}>Back to Classroom</NavLink>
             </nav>
 
-            
-
             <h2>Welcome to {user.first_name}'s project page!</h2>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
+            <div className='grid'>
+                <div>
+                    <img alt={project.title} src={project.image_url} />
+                </div>
+                <div className='proj-info'>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    <a href={`${project.project_url}`} target='_blank'>Check out my project</a>
+                </div>
+            </div>
            
-            <img alt={project.title} src={project.image_url}/>
-            <a href={`${project.project_url}`} target='_blank'>Check out my project</a>
-           
-            <Link to={`/classrooms/${project.classroom_id}`}>Back to Classroom</Link>
-            
+                
         </div>
     );
 }

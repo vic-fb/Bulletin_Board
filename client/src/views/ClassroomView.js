@@ -16,7 +16,7 @@ function ClassroomView(props) {
     }
     
     return (
-        <div className="ClassroomView container">
+        <div className="ClassroomView">
             <nav className="NavBar">
                 <Link to={`/edit-classroom`}>Edit Your Classroom</Link>
             </nav>

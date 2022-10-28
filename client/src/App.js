@@ -80,7 +80,7 @@ function App(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newProject)
     }
-    fetch('/student-projects', putOptions)
+    fetch(`/student-projects/${newProject.id}`, putOptions)
       .then(res => res.json())
       .then(json => {
         setStudentProjects(json);

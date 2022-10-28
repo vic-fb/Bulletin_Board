@@ -47,19 +47,27 @@ router.get('/', async (req, res) => {
     }
   });
 
-  /* PUT new project (replace existing with new) */
+  /* PUT existing project with new project content */
   router.put('/:id', async (req, res) => {
+    console.log(req);
     let sql = `
-      INSERT INTO student_projects (title, description, image_url, project_url, user_id, classroom_id)
-      VALUES ('${req.body.title}', '${req.body.description}', '${req.body.image_url}', '${req.body.project_url}', ${req.body.user_id}, ${req.body.classroom_id})
+      UPDATE student_projects 
+      SET 
+        title = '${req.body.title}', 
+        description = '${req.body.description}', 
+        image_url = '${req.body.image_url}', 
+        project_url = '${req.body.project_url}'
+      WHERE
+        id = '${req.params.id}';
     `;
+
+          // ${ req.body.user_id }, ${ req.body.classroom_id })
 
     try {
       let project = await db(`SELECT * FROM student_projects WHERE id = ${req.params.id}`);
       if (project.data.length === 0){
         res.status(404).send({ error: "There is no existing project to replace."})
       } else {
-        await db(`DELETE FROM student_projects WHERE id = ${req.params.id}`);
         await db(sql);
         let result = await db(`SELECT * FROM student_projects`);
         res.status(201).send(result.data);
