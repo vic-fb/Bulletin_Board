@@ -1,5 +1,5 @@
 .ClassroomView {
-    background-image: url('https://wallpaperaccess.com/full/218799.jpg');
+    color: white;
 }
 
 h2 {
@@ -16,4 +16,8 @@ h2 {
     width: auto;
     object-fit: cover;
     max-width: 100%;
+}
+
+.row {
+    margin: 1em auto;
 }
