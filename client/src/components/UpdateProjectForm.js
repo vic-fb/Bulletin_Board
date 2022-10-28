@@ -8,15 +8,15 @@ function UpdateProjectForm(props) {
     let project = props.studentProjects.find(p => p.id === Number(id));
     let userId = project.user_id;
     let classroomId = project.classroom_id;
-
+console.log(project);
     let EMPTY_FORM = {
-        user_id: `${userId}`,
-        title: '',
-        description: '',
-        image_url: '',
-        project_url: '',
-        classroom_id: `${classroomId}`,
-        id: `${id}`
+        user_id: userId,
+        title: project.title,
+        description: project.description,
+        image_url: project.image_url,
+        project_url: project.project_url,
+        classroom_id: classroomId,
+        id: id
     }
 
     let [projectFormData, setProjectFormData] = useState(EMPTY_FORM);
@@ -36,7 +36,7 @@ function UpdateProjectForm(props) {
     function handleSubmit(event) {
         event.preventDefault();
         props.updateProjectCb(projectFormData);
-        setProjectFormData(EMPTY_FORM);
+        // setProjectFormData(EMPTY_FORM);
         toggleView();
     }
 

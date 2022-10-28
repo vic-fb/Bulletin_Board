@@ -30,9 +30,6 @@ function AddUserForm(props) {
     function handleSubmit(event) {
         event.preventDefault();
         props.addUserCb(userFormData);
-        if(userFormData.role === 'student') {
-            props.addInitialProjectCb();
-        }
         setUserFormData(EMPTY_FORM);
         navigate(`/classrooms/${userFormData.classroom_id}`);
     }

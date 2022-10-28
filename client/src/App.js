@@ -66,34 +66,6 @@ function getOptions(options) {
     });
   };
 
-  const addInitialProject = () => {
-    let initialProject = {
-      user_id: `${users[users.length - 1].id}`,
-      title: '',
-      description: '',
-      image_url: '',
-      project_url: '',
-      classroom_id: `${users[users.length - 1].classroom_id}`,
-    }
-
-    let postOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(initialProject)
-    }
-
-    fetch('/student-projects', postOptions)
-      .then(res => res.json())
-      .then(json => {
-        setStudentProjects(json);
-        console.log(json);
-        navigate(`/classrooms/${json[json.length-1].classroom_id}`);
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
-  }
-
     const updateProject = (newProject) => {
       let putOptions = {
         method: 'PUT',
@@ -140,12 +112,42 @@ function getOptions(options) {
         .then(res => res.json())
         .then(json => {
           setUsers(json);
+          let user = json[json.length-1];
+          if (user.role === 'student') {
+            addInitialProject(user);
+          }
         })
       .catch(error => {
         console.log(error.message);
       });  
   }
 
+  const addInitialProject = (user) => {
+    let initialProject = {
+      user_id: user.id,
+      title: '',
+      description: '',
+      image_url: '',
+      project_url: '',
+      classroom_id: user.classroom_id
+    }
+
+    let postOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(initialProject)
+    }
+
+    fetch('/student-projects', postOptions)
+      .then(res => res.json())
+      .then(json => {
+        setStudentProjects(json);
+        navigate(`/classrooms/${json[json.length - 1].classroom_id}`);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  }
 
   return (
     <div className="App">
