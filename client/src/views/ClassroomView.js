@@ -22,15 +22,9 @@ function ClassroomView(props) {
             </nav>
 
             <h2>Welcome to the Bulletin Board for {classroom.classroom_name}!</h2>
-            {/* <div>
-                {
-                    projects.map((p) => (
-                        <h3 key={p.id} value={p.id}>
-                           <Link to={`/student-projects/${p.id}`}> {p.title} </Link>
-                        </h3>
-                    ))
-                }
-            </div> */}
+
+            <h3> Current Assignment: {classroom.assignment_title}</h3>
+          
             <div className='row mb-3'>
                 {
                     projects.map((p) => (
