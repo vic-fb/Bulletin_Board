@@ -5,6 +5,7 @@ import "../StudentProjectInfo.css"
 
 function StudentProjectInfo(props) {
     let { id } = useParams();
+    console.log(props);
     let project = props.studentProjects.find(p => p.id === Number(id));
     let user = props.users.find(u => u.id === project.user_id);
 

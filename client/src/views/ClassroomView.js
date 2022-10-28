@@ -6,13 +6,18 @@ import '../ClassroomView.css';
 function ClassroomView(props) {
     let { id } = useParams();
     let classroom = props.classrooms.find(c => c.id === Number(id));
-    let projects = props.studentProjects.filter(p => p.classroom_id === Number(id));
-    let student = props.users.find(s => s.id === projects.user_id);
+    let classroomProjects = props.studentProjects.filter(p => p.classroom_id === Number(id));
+    let classroomStudents = props.users.filter(s => s.classroom_id === Number(id))
 
     if (props.classrooms.length === 0 || props.studentProjects.length === 0) {
         return (
             <h2>Loading</h2>
         )
+    }
+
+    function projectAuthorName (projectObj) {
+        let authorObj = classroomStudents.find(s => s.id === projectObj.user_id);
+        return authorObj.first_name;
     }
     
     return (
@@ -27,8 +32,8 @@ function ClassroomView(props) {
           
             <div className='row mb-3'>
                 {
-                    projects.map((p) => (
-                        <div className='col my-2'>
+                    classroomProjects.map((p) => (
+                        <div key={p.id} className='col my-2'>
                             <div className="card" style={{ width: '18rem' }}>
                                 <div key={p.id}>
                                     <div>
@@ -36,7 +41,7 @@ function ClassroomView(props) {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title">{p.title}</h5>
-                                        <h6 className="card-text">{student}</h6>
+                                        <h6 className="card-text">By {projectAuthorName(p)}</h6>
                                         <Link to={`/student-projects/${p.id}`} className="btn btn-primary">View Project</Link>
                                     </div>
                                 </div>

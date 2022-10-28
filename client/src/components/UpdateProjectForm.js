@@ -5,7 +5,6 @@ import { useParams, useOutletContext} from 'react-router-dom';
 function UpdateProjectForm(props) {
     let { id } = useParams();
    
-
     let project = props.studentProjects.find(p => p.id === Number(id));
     let userId = project.user_id;
     let classroomId = project.classroom_id;

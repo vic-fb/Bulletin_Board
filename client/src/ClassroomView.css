@@ -18,6 +18,10 @@ h2 {
     max-width: 100%;
 }
 
+.card-body {
+    color: black;
+}
+
 .row {
     margin: 1em auto;
 }
