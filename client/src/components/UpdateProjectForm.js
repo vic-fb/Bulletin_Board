@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useParams, useOutletContext} from 'react-router-dom';
 
 
-function AddProjectForm(props) {
+function UpdateProjectForm(props) {
     let { id } = useParams();
    
 
@@ -35,14 +35,14 @@ function AddProjectForm(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        props.addNewProjectCb(projectFormData);
+        props.updateProjectCb(projectFormData);
         setProjectFormData(EMPTY_FORM);
         toggleView();
     }
 
     return (
         //upon log-in, user_id & classroom_id will be automatically collected
-        <div className="AddProjectForm">
+        <div className="UpdateProjectForm">
             <form onSubmit={handleSubmit}>
                 <label>
                     Project Title
@@ -91,4 +91,4 @@ function AddProjectForm(props) {
     );
 }
 
-export default AddProjectForm;
+export default UpdateProjectForm;

@@ -12,6 +12,7 @@ function App(props) {
   let [users, setUsers] = useState([]);
   let [classrooms, setClassrooms] = useState([]);
   let [studentProjects, setStudentProjects] = useState([]);
+  let [currentUser, setCurrentUser] = useState({id: 1})
  
   const navigate = useNavigate();
   
@@ -55,43 +56,38 @@ function App(props) {
     });
   };
 
-  // console.log(typeof studentProjects);
+ 
+  // let postOptions = {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(newProject)
+  // }
 
-  const addNewProject = (newProject) => {
-    let postOptions = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(newProject)
-    }
-    
+  // fetch('/student-projects', postOptions)
+  //   .then(res => res.json())
+  //   .then(json => {
+  //     setStudentProjects(json);
+  //     navigate(`/student-projects/${json[json.length - 1].id}`);
+  //   })
+  //   .catch(error => {
+  //     console.log(error.message);
+  //   });
+
+
+  const updateProject = (newProject) => {
     let putOptions = {
       method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newProject)
     }
-
-    let user = studentProjects.find(p => p.user_id === newProject.user_id)
-    
-    if(user) {
-      fetch('/student-projects', putOptions)
-        .then(res => res.json())
-        .then(json => {
-          setStudentProjects(json);
-        })
-      .catch(error => {
-        console.log(error.message);
-      });
-    } else {
-      fetch('/student-projects', postOptions)
-        .then(res => res.json())
-        .then(json => {
-          setStudentProjects(json);
-          navigate(`/student-projects/${json[json.length - 1].id}`);
-        })
-      .catch(error => {
-        console.log(error.message);
-      });
-    } 
+    fetch('/student-projects', putOptions)
+      .then(res => res.json())
+      .then(json => {
+        setStudentProjects(json);
+      })
+    .catch(error => {
+      console.log(error.message);
+    });
   }
 
   const addNewClassroom = (newClassroom) => {
@@ -141,8 +137,8 @@ function App(props) {
               users={users} 
               studentProjects={studentProjects} 
               toggleViewCb={props.toggleView}/>} >
-              <Route path="add-project" element={<StudentAdminView 
-                  addNewProjectCb={addNewProject} 
+              <Route path="update-project" element={<StudentAdminView 
+                  updateProjectCb={updateProject} 
                   toggleViewCb={props.toggleViewCb}
                   studentProjects={studentProjects}/>} />
           </Route>

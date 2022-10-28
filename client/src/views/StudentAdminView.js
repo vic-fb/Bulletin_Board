@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
-import AddProjectForm from '../components/AddProjectForm';
+import UpdateProjectForm from '../components/UpdateProjectForm';
 
 function StudentAdminView(props) {
    
@@ -10,10 +10,10 @@ function StudentAdminView(props) {
       <div className="StudentAdminView">
         <h2>Fill out all the fields the form below to post your latest project.</h2>
         
-        <AddProjectForm 
+        <UpdateProjectForm 
             toggleViewCb={props.toggleViewCb} 
             studentProjects={props.studentProjects}
-            addNewProjectCb={props.addNewProjectCb}
+            updateProjectCb={props.updateProjectCb}
             />
         
   

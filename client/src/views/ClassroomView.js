@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import '../ClassroomView.css';
 
 
 function ClassroomView(props) {
@@ -15,13 +16,13 @@ function ClassroomView(props) {
     }
     
     return (
-        <div className="ClassroomView">
+        <div className="ClassroomView container">
             <nav className="NavBar">
                 <Link to={`/edit-classroom`}>Edit Your Classroom</Link>
             </nav>
 
             <h2>Welcome to the Bulletin Board for {classroom.classroom_name}!</h2>
-            <div>
+            {/* <div>
                 {
                     projects.map((p) => (
                         <h3 key={p.id} value={p.id}>
@@ -29,23 +30,28 @@ function ClassroomView(props) {
                         </h3>
                     ))
                 }
-            </div>
-
-            {/* <div class="card" style="width: 18rem;">
+            </div> */}
+            <div className='row mb-3'>
                 {
                     projects.map((p) => (
-                        <>
-                        <img src={`${p.image_url}`} className="card-img-top" alt={`${p.title}`}/>
-                        <div className="card-body">
-                            <h5 className="card-title">{p.title}</h5>
-                            <h6 className="card-text">{student}</h6>
-                            <Link to={`/student-projects/${p.id}`} className="btn btn-primary">View Project</Link>
+                        <div className='col my-2'>
+                            <div className="card" style={{ width: '18rem' }}>
+                                <div key={p.id}>
+                                    <div>
+                                        <img src={`${p.image_url}`} className="card-img-top" alt={`${p.title}`} />
+                                    </div>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{p.title}</h5>
+                                        <h6 className="card-text">{student}</h6>
+                                        <Link to={`/student-projects/${p.id}`} className="btn btn-primary">View Project</Link>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        </>
                     ))
-                }
-                
-            </div> */}
+                }     
+            </div>
+            
             <Link to="/">Back to Classroom Selection</Link>
         </div>
     );

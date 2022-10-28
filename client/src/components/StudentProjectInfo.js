@@ -17,7 +17,7 @@ function StudentProjectInfo(props) {
         //upon log-in, user_id will be automatically collected
         <div className="StudentProjectInfo">
             <nav className="NavBar">
-                <NavLink to='add-project' onClick={props.toggleViewCb}>Display a New Project</NavLink>
+                <NavLink to='update-project' onClick={props.toggleViewCb}>Display a New Project</NavLink>
             </nav>
 
             
