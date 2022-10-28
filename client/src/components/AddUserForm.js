@@ -13,6 +13,7 @@ function AddUserForm(props) {
     const navigate = useNavigate();
 
     let [userFormData, setUserFormData] = useState(EMPTY_FORM);
+    
 
     function handleChange(event) {
         const value = event.target.value;
@@ -24,11 +25,14 @@ function AddUserForm(props) {
             [name]: value
          }));
     }
+    
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(userFormData);
         props.addUserCb(userFormData);
+        if(userFormData.role === 'student') {
+            props.addInitialProjectCb();
+        }
         setUserFormData(EMPTY_FORM);
         navigate(`/classrooms/${userFormData.classroom_id}`);
     }

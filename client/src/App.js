@@ -8,22 +8,26 @@ import StudentAdminView from './views/StudentAdminView';
 import TeacherAdminView from './views/TeacherAdminView';
 
 
+
 function App(props) {
+
+
   let [users, setUsers] = useState([]);
   let [classrooms, setClassrooms] = useState([]);
   let [studentProjects, setStudentProjects] = useState([]);
   let [currentUser, setCurrentUser] = useState({id: 1})
   let [options, setOptions] = useState([])
-  
  
+
   const navigate = useNavigate();
-  
  
   useEffect(() => {
     getUsers();
     getClassrooms();
     getProjects();
   }, []);
+
+  
 
 function getOptions(options) {
   setOptions(options);
@@ -62,39 +66,50 @@ function getOptions(options) {
     });
   };
 
- 
-  // let postOptions = {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(newProject)
-  // }
-
-  // fetch('/student-projects', postOptions)
-  //   .then(res => res.json())
-  //   .then(json => {
-  //     setStudentProjects(json);
-  //     navigate(`/student-projects/${json[json.length - 1].id}`);
-  //   })
-  //   .catch(error => {
-  //     console.log(error.message);
-  //   });
-
-
-  const updateProject = (newProject) => {
-    let putOptions = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newProject)
+  const addInitialProject = () => {
+    let initialProject = {
+      user_id: `${users[users.length - 1].id}`,
+      title: '',
+      description: '',
+      image_url: '',
+      project_url: '',
+      classroom_id: `${users[users.length - 1].classroom_id}`,
     }
-    fetch(`/student-projects/${newProject.id}`, putOptions)
+
+    let postOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(initialProject)
+    }
+
+    fetch('/student-projects', postOptions)
       .then(res => res.json())
       .then(json => {
         setStudentProjects(json);
+        console.log(json);
+        navigate(`/classrooms/${json[json.length-1].classroom_id}`);
       })
-    .catch(error => {
-      console.log(error.message);
-    });
+      .catch(error => {
+        console.log(error.message);
+      });
   }
+
+    const updateProject = (newProject) => {
+      let putOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newProject)
+      }
+      fetch(`/student-projects/${newProject.id}`, putOptions)
+        .then(res => res.json())
+        .then(json => {
+          setStudentProjects(json);
+        })
+      .catch(error => {
+        console.log(error.message);
+      });
+    }
+  
 
   const addClassroom = (newClassroom) => {
     let postOptions = {
@@ -154,7 +169,9 @@ function getOptions(options) {
           <Route path={`add-classroom`} element={<TeacherAdminView 
             addClassroomCb={addClassroom} 
             addUserCb={addUser}
-            options={options}/>} />
+            options={options}
+            users={users}
+            addInitialProjectCb={addInitialProject}/>} />
       </Routes>
       
 

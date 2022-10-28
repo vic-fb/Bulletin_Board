@@ -15,7 +15,10 @@ function TeacherAdminView(props) {
         
         <h2>Add a new USER</h2>
         
-        <AddUserForm addUserCb={props.addUserCb} options={props.options}/>
+        <AddUserForm addUserCb={props.addUserCb} 
+          options={props.options} 
+          users={props.users}
+          addInitialProjectCb={props.addInitialProjectCb}/>
   
       </div>
     );
