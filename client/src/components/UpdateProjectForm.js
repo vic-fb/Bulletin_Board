@@ -8,7 +8,7 @@ function UpdateProjectForm(props) {
     let project = props.studentProjects.find(p => p.id === Number(id));
     let userId = project.user_id;
     let classroomId = project.classroom_id;
-console.log(project);
+
     let EMPTY_FORM = {
         user_id: userId,
         title: project.title,
@@ -36,7 +36,6 @@ console.log(project);
     function handleSubmit(event) {
         event.preventDefault();
         props.updateProjectCb(projectFormData);
-        // setProjectFormData(EMPTY_FORM);
         toggleView();
     }
 

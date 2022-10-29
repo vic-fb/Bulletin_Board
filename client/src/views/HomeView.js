@@ -34,7 +34,7 @@ useEffect function to make sure data was available before page was rendered*/
     return (
         <div className="HomeView">
             <nav className="NavBar">
-                <Link to={`/add-classroom`}>Teacher Admin</Link>
+                <Link to={`/teacher-admin`}>Teacher Admin</Link>
             </nav>
             <h1>Welcome to Bulletin Board!</h1>
             

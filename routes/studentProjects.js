@@ -58,10 +58,8 @@ router.get('/', async (req, res) => {
         image_url = '${req.body.image_url}', 
         project_url = '${req.body.project_url}'
       WHERE
-        id = '${req.params.id}';
+        id = ${req.params.id};
     `;
-
-          // ${ req.body.user_id }, ${ req.body.classroom_id })
 
     try {
       let project = await db(`SELECT * FROM student_projects WHERE id = ${req.params.id}`);

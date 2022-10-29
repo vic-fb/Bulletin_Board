@@ -22,14 +22,13 @@ function ClassroomView(props) {
     
     return (
         <div className="ClassroomView">
-            <nav className="NavBar">
-                <Link to={`/edit-classroom`}>Edit Your Classroom</Link>
-            </nav>
 
             <h2>Welcome to the Bulletin Board for {classroom.classroom_name}!</h2>
 
             <h3> Current Assignment: {classroom.assignment_title}</h3>
           
+            <p>{classroom.assignment_desc}</p>
+
             <div className='row mb-3'>
                 {
                     classroomProjects.map((p) => (
