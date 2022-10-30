@@ -1,5 +1,5 @@
 import React , {useEffect, useState} from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./HomeView.css"
 
 
@@ -33,9 +33,7 @@ useEffect function to make sure data was available before page was rendered*/
 
     return (
         <div className="HomeView">
-            <nav className="NavBar">
-                <Link to={`/teacher-admin`}>Teacher Admin</Link>
-            </nav>
+            
             <h1>Welcome to Bulletin Board!</h1>
             
             <form>

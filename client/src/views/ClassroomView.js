@@ -49,8 +49,6 @@ function ClassroomView(props) {
                     ))
                 }     
             </div>
-            
-            <Link to="/">Back to Classroom Selection</Link>
         </div>
     );
 }

@@ -6,6 +6,7 @@ import ClassroomView from './views/ClassroomView';
 import StudentProjectView from './views/StudentProjectView';
 import StudentAdminView from './views/StudentAdminView';
 import TeacherAdminView from './views/TeacherAdminView';
+import NavBar from './components/NavBar';
 
 
 
@@ -172,7 +173,7 @@ function getListItems(listItems) {
 
   return (
     <div className="App">
-      
+      <NavBar />
       <Routes>
           <Route path="/" element={<HomeView 
             classrooms={classrooms} 
