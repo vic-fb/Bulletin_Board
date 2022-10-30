@@ -1,12 +1,41 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function UpdateAssignmentForm(props) {
-    
+    let EMPTY_FORM = {
+        classroom_name: '',
+        assignment_title: '',
+        assignment_desc: '',
+        id: ''
+    }
+
     const navigate = useNavigate();
 
     let [assignmentFormData, setAssignmentFormData] = useState([]);
+    let [listItems, setListItems] = useState([]);
+    
+    useEffect(() => {
+        let temp = generateListItems()
+        setListItems(temp);
+        props.getListItemsCb(listItems);
+    }, [props.classrooms]); // call whenever classrooms changes
+
+    /* had to create generateListItems() outside rendering statement b/c page was 
+    being drawn before classrooms was loaded, so had to create options state and 
+    useEffect function to make sure data was available before page was rendered*/
+    function generateListItems() {
+        return props.classrooms.map((c) => (
+            <option className="dropdown-item"
+                key={c.id}
+                id="classroom"
+                name="id"
+                value={setAssignmentFormData.id}
+                onChange={e => handleChange(e)}>
+                {c.classroom_name}
+            </option>
+        ))
+    }
 
 
     function handleChange(event) {
@@ -31,13 +60,12 @@ function UpdateAssignmentForm(props) {
         <div className="UpdateAssignmentForm">
             <form onSubmit={handleSubmit}>
                
-                <label>Classroom</label>
-                    <select id="classroom"
-                        name="id"
-                        value={assignmentFormData.id}
-                        onChange={e => handleChange(e)}>
-                        {props.options}
+                <div className="dropdown">
+                    <label>Select a Classroom</label>
+                    <select className="form-select" aria-label="Default select example">
+                        {listItems}
                     </select>
+                </div>
                 
                 <label>
                     Assignment Title
@@ -60,7 +88,7 @@ function UpdateAssignmentForm(props) {
                     </textarea>
                 </label>
 
-                <button type="submit">Update Project</button>
+                <button type="submit" className="btn btn-info">Update Project</button>
             </form>
         </div>
     );

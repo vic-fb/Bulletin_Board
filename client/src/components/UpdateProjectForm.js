@@ -84,7 +84,7 @@ function UpdateProjectForm(props) {
                     />
                 </label>
 
-                <button type="submit">Update Project</button>
+                <button type="submit" className="btn btn-info">Update Project</button>
             </form> 
         </div>
     );

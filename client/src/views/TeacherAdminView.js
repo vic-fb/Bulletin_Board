@@ -3,31 +3,37 @@ import React, { useState , useEffect} from 'react';
 import AddClassroomForm from'../components/AddClassroomForm';
 import AddUserForm from '../components/AddUserForm';
 import UpdateAssignmentForm from '../components/UpdateAssignmentForm';
+import "./TeacherAdminView.css"
 
 function TeacherAdminView(props) {
    
     return (
       <div className="TeacherAdminView">
         <h1>Teacher Admin Hub</h1>
+        <div className='TeacherAdminGrid'>
+          <div className='col1'>
+            <h2>Add a Classroom</h2>
+            <AddClassroomForm addClassroomCb={props.addClassroomCb} />
+          </div>
 
-        <h2>Start a new CLASSROOM</h2>
-        
-        <AddClassroomForm addClassroomCb={props.addClassroomCb}/>
-        
-        <h2>Add a new USER</h2>
-        
-        <AddUserForm 
-          addUserCb={props.addUserCb} 
-          options={props.options} 
-          users={props.users}
-          addInitialProjectCb={props.addInitialProjectCb}/>
+          <div className='col2'>
+            <h2>Add a User</h2>
+            <AddUserForm
+              addUserCb={props.addUserCb}
+              classrooms={props.classrooms}
+              getListItemsCb={props.getListItemsCb}
+              users={props.users}
+              addInitialProjectCb={props.addInitialProjectCb} />
+          </div>
 
-        <h2>Update the ASSIGNMENT</h2>
-
-        <UpdateAssignmentForm 
-          updateAssignmentCb={props.updateAssignmentCb}
-          options={props.options}/>
-  
+          <div className='col3'>
+            <h2>Update an Assignment</h2>
+            <UpdateAssignmentForm
+              updateAssignmentCb={props.updateAssignmentCb}
+              getListItemsCb={props.getListItemsCb}
+              classrooms={props.classrooms} />
+          </div>
+        </div>
       </div>
     );
   }

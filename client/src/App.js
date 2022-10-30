@@ -17,6 +17,7 @@ function App(props) {
   let [studentProjects, setStudentProjects] = useState([]);
   // let [currentUser, setCurrentUser] = useState({id: 1})
   let [options, setOptions] = useState([])
+  let [listItems, setListItems] = useState([])
  
 
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ function App(props) {
 
 function getOptions(options) {
   setOptions(options);
+}
+
+function getListItems(listItems) {
+  setListItems(listItems);
 }
 
   const getUsers = () => {
@@ -187,7 +192,8 @@ function getOptions(options) {
           <Route path={'teacher-admin'} element={<TeacherAdminView 
             addClassroomCb={addClassroom} 
             addUserCb={addUser}
-            options={options}
+            classrooms={classrooms}
+            getListItemsCb={getListItems}
             users={users}
             addInitialProjectCb={addInitialProject}
             updateAssignmentCb={updateAssignment}/>} />

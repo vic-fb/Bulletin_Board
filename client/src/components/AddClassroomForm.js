@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function AddTeacherForm(props) {
+function AddClassroomForm(props) {
     let EMPTY_FORM = {
         classroom_name: '',
         assignment_title: '',
@@ -67,10 +67,10 @@ function AddTeacherForm(props) {
                     </textarea>
                 </label>
 
-                <button type="submit">Add Classroom</button>
+                <button type="submit" className="btn btn-info">Add Classroom</button>
             </form> 
         </div>
     );
 }
 
-export default AddTeacherForm;
+export default AddClassroomForm;

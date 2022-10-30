@@ -4,7 +4,7 @@ h1 {
     color:darkgoldenrod
 }
 
-label {
+.HomeView label {
     display: block;
     margin-bottom: 1em;
     color:deepskyblue

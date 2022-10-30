@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function AddUserForm(props) {
@@ -10,9 +10,32 @@ function AddUserForm(props) {
         classroom_id: ''
     }
 
+    let [userFormData, setUserFormData] = useState(EMPTY_FORM);
+    let [listItems, setListItems] = useState([]);
     const navigate = useNavigate();
 
-    let [userFormData, setUserFormData] = useState(EMPTY_FORM);
+
+    useEffect(() => {
+        let temp = generateListItems()
+        setListItems(temp);
+        props.getListItemsCb(listItems);
+    }, [props.classrooms]); // call whenever classrooms changes
+
+    /* had to create generateListItems() outside rendering statement b/c page was 
+    being drawn before classrooms was loaded, so had to create options state and 
+    useEffect function to make sure data was available before page was rendered*/
+    function generateListItems() {
+        return props.classrooms.map((c) => (
+            <option className="dropdown-item"
+                key={c.id} 
+                id="classroom"
+                name="classroom_id"
+                value={userFormData.classroom_id}
+                onClick={e => handleChange(e)}>
+                    {c.classroom_name}
+            </option>
+        ))
+    }
     
 
     function handleChange(event) {
@@ -26,7 +49,6 @@ function AddUserForm(props) {
          }));
     }
     
-
     function handleSubmit(event) {
         event.preventDefault();
         props.addUserCb(userFormData);
@@ -61,8 +83,9 @@ function AddUserForm(props) {
                 <label>
                     Role
                 </label>  
-                <label> 
+                <label className='radio-button'> 
                     <input
+                        className='radio-button-input'
                         type="radio"
                         name="role"
                         value="teacher"
@@ -71,8 +94,9 @@ function AddUserForm(props) {
                     />
                     Teacher
                 </label>
-                <label>
+                <label className='radio-button'>
                     <input
+                        className='radio-button-input'
                         type="radio"
                         name="role"
                         value="student"
@@ -82,15 +106,14 @@ function AddUserForm(props) {
                     Student
                 </label>
 
-                <label>Classroom</label>
-                <select id="classroom" 
-                    name="classroom_id" 
-                    value={userFormData.classroom_id} 
-                    onChange={e => handleChange(e)}>
-                    {props.options}
-                </select>
+                <div className="dropdown">
+                    <label>Select a Classroom</label>
+                    <select className="form-select" aria-label="Default select example">
+                        {listItems}
+                    </select>
+                </div>
 
-                <button type="submit">Add User</button>
+                <button type="submit" className="btn btn-info">Add User</button>
             </form> 
         </div>
     );

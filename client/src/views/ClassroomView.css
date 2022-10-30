@@ -2,8 +2,8 @@
     color: white;
 }
 
-h2 {
-    margin-bottom: 1em;
+.ClassroomView h2 {
+    margin: 1em 0;
 }
 
 .card {
