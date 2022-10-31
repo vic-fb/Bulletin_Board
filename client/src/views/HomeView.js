@@ -6,7 +6,6 @@ import DropdownMenu from '../components/DropdownMenu';
 
 function HomeView(props) {
 
-    console.log(props)
     return (
         <div className="HomeView">
             
@@ -18,8 +17,10 @@ function HomeView(props) {
                     Choose a classroom
                 </a>
 
-                <DropdownMenu classrooms={props.classrooms}
-                    getOptionsCb={props.getOptionsCb} />
+                <DropdownMenu 
+                    classrooms={props.classrooms}
+                    getOptionsCb={props.getOptionsCb} 
+                />
 
             </div>
 
