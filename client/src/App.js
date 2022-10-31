@@ -20,17 +20,17 @@ function App(props) {
   // let [currentUser, setCurrentUser] = useState({id: 1})
   let [options, setOptions] = useState([])
   let [listItems, setListItems] = useState([])
- 
+
 
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     getUsers();
     getClassrooms();
     getProjects();
   }, []);
 
-  
+
 
 function getOptions(options) {
   setOptions(options);
@@ -88,7 +88,7 @@ function getListItems(listItems) {
       console.log(error.message);
     });
   }
-  
+
 
   const addClassroom = (newClassroom) => {
     let postOptions = {
@@ -96,7 +96,7 @@ function getListItems(listItems) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(newClassroom)
     }
- 
+
       fetch('/classrooms', postOptions)
         .then(res => res.json())
         .then(json => {
@@ -104,7 +104,7 @@ function getListItems(listItems) {
         })
       .catch(error => {
         console.log(error.message);
-      });  
+      });
   }
 
   const updateAssignment = (newAssignment) => {
@@ -130,7 +130,7 @@ function getListItems(listItems) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(newUser)
     }
- 
+
       fetch('/users', postOptions)
         .then(res => res.json())
         .then(json => {
@@ -143,7 +143,7 @@ function getListItems(listItems) {
         })
       .catch(error => {
         console.log(error.message);
-      });  
+      });
   }
 
   const addInitialProject = (user) => {
@@ -175,49 +175,49 @@ function getListItems(listItems) {
 
   return (
     <div className="App">
-      <NavBar 
+      <NavBar
         classrooms={classrooms}
-        getOptionsCb={getOptions} 
+        getOptionsCb={getOptions}
       />
       <Routes>
         <Route
           path="/"
-          element={<HomeView 
+          element={<HomeView
             classrooms={classrooms}
             getOptionsCb={getOptions}
           />}
         />
-          <Route 
-            path="classrooms/:id" 
-            element={<ClassroomView 
-              classrooms={classrooms} 
-              studentProjects={studentProjects} 
+          <Route
+            path="classrooms/:id"
+            element={<ClassroomView
+              classrooms={classrooms}
+              studentProjects={studentProjects}
               users={users}
-            />} 
+            />}
           />
-          
-          <Route 
-            path="student-projects/:id" 
-            element={<StudentProjectView 
-              users={users} 
-              studentProjects={studentProjects} 
+
+          <Route
+            path="student-projects/:id"
+            element={<StudentProjectView
+              users={users}
+              studentProjects={studentProjects}
               toggleViewCb={props.toggleView}
-              />} 
+              />}
             >
-              <Route 
-                path="update-project" 
-                element={<StudentAdminView 
-                  updateProjectCb={updateProject} 
+              <Route
+                path="update-project"
+                element={<StudentAdminView
+                  updateProjectCb={updateProject}
                   toggleViewCb={props.toggleViewCb}
                   studentProjects={studentProjects}
-                />} 
+                />}
               />
           </Route>
-         
-          <Route 
+
+          <Route
             path='teacher-admin'
-            element={<TeacherAdminView 
-              addClassroomCb={addClassroom} 
+            element={<TeacherAdminView
+              addClassroomCb={addClassroom}
               addUserCb={addUser}
               classrooms={classrooms}
               getListItemsCb={getListItems}
@@ -227,7 +227,7 @@ function getListItems(listItems) {
             />}
           />
       </Routes>
-      
+
 
 
     </div>

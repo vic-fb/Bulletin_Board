@@ -14,7 +14,7 @@ function AddUserForm(props) {
     let [userFormData, setUserFormData] = useState(EMPTY_FORM);
     const navigate = useNavigate();
 
-    
+
     function handleChange(event) {
         const value = event.target.value;
         const name = event.target.name;
@@ -25,7 +25,7 @@ function AddUserForm(props) {
             [name]: value
          }));
     }
-    
+
     function handleSubmit(event) {
         event.preventDefault();
         props.addUserCb(userFormData);
@@ -59,8 +59,8 @@ function AddUserForm(props) {
 
                 <label>
                     Role
-                </label>  
-                <label className='radio-button'> 
+                </label>
+                <label className='radio-button'>
                     <input
                         className='radio-button-input'
                         type="radio"
@@ -85,7 +85,7 @@ function AddUserForm(props) {
 
                 <div className="dropdown">
                     <label>Select a Classroom</label>
-                    <UserFormDropdownMenu 
+                    <UserFormDropdownMenu
                         userFormData={userFormData}
                         getListItemsCb={props.getListItemsCb}
                         classrooms={props.classrooms}
@@ -93,7 +93,7 @@ function AddUserForm(props) {
                 </div>
 
                 <button type="submit" className="btn btn-info">Add User</button>
-            </form> 
+            </form>
         </div>
     );
 }

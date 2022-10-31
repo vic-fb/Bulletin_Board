@@ -23,8 +23,8 @@ function StudentProjectInfo(props) {
 
             <div className='mx-auto'>
                 <h2>Welcome to {user.first_name}'s project page!</h2>
-            
-            
+
+
             <div className='grid'>
                 <div>
                     <img alt={project.title} src={project.image_url} />
@@ -36,7 +36,7 @@ function StudentProjectInfo(props) {
                 </div>
             </div>
         </div>
-                
+
         </div>
     );
 }

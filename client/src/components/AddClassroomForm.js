@@ -35,7 +35,7 @@ function AddClassroomForm(props) {
         //upon log-in, user_id will be automatically collected
         <div className="AddTeacherForm">
             <form onSubmit={handleSubmit}>
-                
+
                 <label>
                     Classroom Name
                     <input
@@ -68,7 +68,7 @@ function AddClassroomForm(props) {
                 </label>
 
                 <button type="submit" className="btn btn-info">Add Classroom</button>
-            </form> 
+            </form>
         </div>
     );
 }

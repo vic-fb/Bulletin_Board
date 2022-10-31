@@ -6,7 +6,7 @@ import UpdateAssignmentForm from '../components/UpdateAssignmentForm';
 import "./TeacherAdminView.css"
 
 function TeacherAdminView(props) {
-   
+
     return (
       <div className="TeacherAdminView">
         <h1>Teacher Admin Hub</h1>
@@ -37,7 +37,7 @@ function TeacherAdminView(props) {
       </div>
     );
   }
-  
+
   export default TeacherAdminView;
 
   // Think of new page name to reflect that teachers, classrooms, and students are being added/created

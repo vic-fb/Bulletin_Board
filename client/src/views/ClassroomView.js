@@ -19,14 +19,14 @@ function ClassroomView(props) {
         let authorObj = classroomStudents.find(s => s.id === projectObj.user_id);
         return authorObj.first_name;
     }
-    
+
     return (
         <div className="ClassroomView">
 
             <h2>Welcome to the Bulletin Board for {classroom.classroom_name}!</h2>
 
             <h3> Current Assignment: {classroom.assignment_title}</h3>
-          
+
             <p>{classroom.assignment_desc}</p>
 
             <div className='row mb-3'>
@@ -47,7 +47,7 @@ function ClassroomView(props) {
                             </div>
                         </div>
                     ))
-                }     
+                }
             </div>
         </div>
     );

@@ -15,15 +15,15 @@ function UpdateAssignmentForm(props) {
 
     let [assignmentFormData, setAssignmentFormData] = useState([]);
     let [listItems, setListItems] = useState([]);
-    
+
     useEffect(() => {
         let temp = generateListItems()
         setListItems(temp);
         props.getListItemsCb(listItems);
     }, [props.classrooms]); // call whenever classrooms changes
 
-    /* had to create generateListItems() outside rendering statement b/c page was 
-    being drawn before classrooms was loaded, so had to create options state and 
+    /* had to create generateListItems() outside rendering statement b/c page was
+    being drawn before classrooms was loaded, so had to create options state and
     useEffect function to make sure data was available before page was rendered*/
     function generateListItems() {
         return props.classrooms.map((c) => (
@@ -61,19 +61,19 @@ function UpdateAssignmentForm(props) {
         //upon teacher log-in, classroom_id will be automatically collected
         <div className="UpdateAssignmentForm">
             <form onSubmit={handleSubmit}>
-               
+
                 <div className="dropdown">
                     <label>Select a Classroom</label>
                     <select className="form-select" aria-label="Default select example" id="classroom" name="id" onClick={handleClick}>
                         {listItems}
                     </select>
-                    {/* <FormDropdownMenu 
+                    {/* <FormDropdownMenu
                         assignmentFormData={assignmentFormData}
                         getListItemsCb={props.getListItemsCb}
                         classrooms={props.classrooms}
                     /> */}
                 </div>
-                
+
                 <label>
                     Assignment Title
                     <input

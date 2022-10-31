@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
 /* GET user by ID. */
 router.get('/:id', async (req, res) => {
-  
+
   try {
     let user = await db(`SELECT * FROM users WHERE id = ${req.params.id}`);
     if (user.data.length === 0){
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
 
 /* POST new user */
 router.post('/', async(req, res) => {
-  
+
   let sql = `
     INSERT INTO users (first_name, last_name, role, classroom_id)
     VALUES ('${req.body.first_name}', '${req.body.last_name}', '${req.body.role}', ${req.body.classroom_id})

@@ -21,7 +21,7 @@ function NavBar(props) {
                                 getOptionsCb={props.getOptionsCb} />
                         </li>
                     </ul>
-                        
+
                     <ul className="navbar-nav ms-auto">
                             <li className="nav-item" >
                             <NavLink className="nav-link" to="teacher-admin">Teacher Admin</NavLink>
@@ -30,7 +30,7 @@ function NavBar(props) {
                 </div>
             </div>
         </nav>
-       
+
     );
 }
 

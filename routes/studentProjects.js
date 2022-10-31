@@ -12,10 +12,10 @@ router.get('/', async (req, res) => {
       res.status(500).send({error: err.message})
     }
   });
-  
+
   /* GET project by project ID. */
   router.get('/:id', async (req, res) => {
-    
+
     try {
       let project = await db(`SELECT * FROM student_projects WHERE id = ${req.params.id}`);
       if (project.data.length === 0){
@@ -27,21 +27,21 @@ router.get('/', async (req, res) => {
       res.status(500).send({error: err.message})
     }
   });
-  
-  
+
+
 //   /* POST new project */
   router.post('/', async(req, res) => {
-    
+
     let sql = `
       INSERT INTO student_projects (title, description, image_url, project_url, user_id, classroom_id)
       VALUES ('${req.body.title}', '${req.body.description}', '${req.body.image_url}', '${req.body.project_url}', ${req.body.user_id}, ${req.body.classroom_id})
     `;
-  
+
     try {
       await db(sql);
       let result = await db("SELECT * FROM student_projects");
       res.status(201).send(result.data);
-  
+
     } catch (err) {
       res.status(500).send({ error: err.message })
     }
@@ -51,11 +51,11 @@ router.get('/', async (req, res) => {
   router.put('/:id', async (req, res) => {
     console.log(req);
     let sql = `
-      UPDATE student_projects 
-      SET 
-        title = '${req.body.title}', 
-        description = '${req.body.description}', 
-        image_url = '${req.body.image_url}', 
+      UPDATE student_projects
+      SET
+        title = '${req.body.title}',
+        description = '${req.body.description}',
+        image_url = '${req.body.image_url}',
         project_url = '${req.body.project_url}'
       WHERE
         id = ${req.params.id};
