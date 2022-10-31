@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
-function DropdownMenu(props) {
+function NavDropdownMenu(props) {
    
     let [options, setOptions] = useState([]);
 
@@ -24,7 +24,7 @@ function DropdownMenu(props) {
     }
     
     return (
-        <div className='DropdownMenu'>
+        <div className='NavDropdownMenu'>
             <ul className="dropdown-menu">
                 {options}
             </ul>
@@ -32,7 +32,7 @@ function DropdownMenu(props) {
     );
 }
 
-export default DropdownMenu;
+export default NavDropdownMenu;
 
 
 

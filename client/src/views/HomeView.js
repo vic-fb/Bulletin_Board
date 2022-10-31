@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import "./HomeView.css"
-import DropdownMenu from '../components/DropdownMenu';
+import NavDropdownMenu from '../components/NavDropdownMenu';
 
 
 function HomeView(props) {
@@ -17,7 +17,7 @@ function HomeView(props) {
                     Choose a classroom
                 </a>
 
-                <DropdownMenu 
+                <NavDropdownMenu 
                     classrooms={props.classrooms}
                     getOptionsCb={props.getOptionsCb} 
                 />
