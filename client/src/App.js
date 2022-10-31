@@ -174,7 +174,8 @@ function getListItems(listItems) {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar classrooms={classrooms}
+        getOptionsCb={getOptions} />
       <Routes>
           <Route path="/" element={<HomeView 
             classrooms={classrooms} 
