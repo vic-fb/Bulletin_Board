@@ -10,6 +10,7 @@ import NavBar from './components/NavBar';
 
 
 
+
 function App(props) {
 
 
@@ -174,32 +175,57 @@ function getListItems(listItems) {
 
   return (
     <div className="App">
-      <NavBar classrooms={classrooms}
-        getOptionsCb={getOptions} />
+      <NavBar 
+        classrooms={classrooms}
+        getOptionsCb={getOptions} 
+      />
       <Routes>
-          <Route path="/" element={<HomeView 
-            classrooms={classrooms} 
-            getOptionsCb={getOptions}/>} />
-          <Route path="classrooms/:id" element={<ClassroomView classrooms={classrooms} studentProjects={studentProjects} users={users}/>} />
+        <Route
+          path="/"
+          element={<HomeView 
+            classrooms={classrooms}
+            getOptionsCb={getOptions}
+          />}
+        />
+          <Route 
+            path="classrooms/:id" 
+            element={<ClassroomView 
+              classrooms={classrooms} 
+              studentProjects={studentProjects} 
+              users={users}
+            />} 
+          />
           
-          <Route path="student-projects/:id" element={<StudentProjectView 
+          <Route 
+            path="student-projects/:id" 
+            element={<StudentProjectView 
               users={users} 
               studentProjects={studentProjects} 
-              toggleViewCb={props.toggleView}/>} >
-              <Route path="update-project" element={<StudentAdminView 
+              toggleViewCb={props.toggleView}
+              />} 
+            >
+              <Route 
+                path="update-project" 
+                element={<StudentAdminView 
                   updateProjectCb={updateProject} 
                   toggleViewCb={props.toggleViewCb}
-                  studentProjects={studentProjects}/>} />
+                  studentProjects={studentProjects}
+                />} 
+              />
           </Route>
          
-          <Route path={'teacher-admin'} element={<TeacherAdminView 
-            addClassroomCb={addClassroom} 
-            addUserCb={addUser}
-            classrooms={classrooms}
-            getListItemsCb={getListItems}
-            users={users}
-            addInitialProjectCb={addInitialProject}
-            updateAssignmentCb={updateAssignment}/>} />
+          <Route 
+            path='teacher-admin'
+            element={<TeacherAdminView 
+              addClassroomCb={addClassroom} 
+              addUserCb={addUser}
+              classrooms={classrooms}
+              getListItemsCb={getListItems}
+              users={users}
+              addInitialProjectCb={addInitialProject}
+              updateAssignmentCb={updateAssignment}
+            />}
+          />
       </Routes>
       
 

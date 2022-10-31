@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-// import "./NavBar.css"
+import { Link, NavLink } from 'react-router-dom';
 
 
 function NavBar(props) {
     let [options, setOptions] = useState([]);
-    const navigate = useNavigate();
+
 
     useEffect(() => {
         let temp = generateOptions()
@@ -23,7 +22,7 @@ function NavBar(props) {
             </li>
         ))
     }
-    <a className="dropdown-item" href="#">Action</a>
+  
     return (
         <nav className="navbar navbar-expand-lg bg-light">
             <div className="container-fluid">
