@@ -12,7 +12,6 @@ function App(props) {
   let [users, setUsers] = useState([]);
   let [classrooms, setClassrooms] = useState([]);
   let [studentProjects, setStudentProjects] = useState([]);
-  // let [currentUser, setCurrentUser] = useState({id: 1})
   let [options, setOptions] = useState([]);
   let [listItems, setListItems] = useState([]);
 
