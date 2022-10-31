@@ -1,5 +1,5 @@
 import React , {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import "./HomeView.css"
 
 
@@ -19,9 +19,12 @@ being drawn before classrooms was loaded, so had to create options state and
 useEffect function to make sure data was available before page was rendered*/
    function generateOptions() {  
         return props.classrooms.map((c) => (
-            <option key={c.id} value={c.id}>
-                {c.classroom_name}
-             </option>
+            // <option key={c.id} value={c.id}>
+            //     {c.classroom_name}
+            //  </option>
+            <li><Link className="dropdown-item" to={`/classrooms/${c.id}`} key={c.id} value={c.id}>
+                {c.classroom_name} </Link>
+            </li>
         ))
     }
 
@@ -36,13 +39,22 @@ useEffect function to make sure data was available before page was rendered*/
             
             <h1>Welcome to Bulletin Board!</h1>
             
-            <form>
+            {/* <form>
                 <label>Choose a classroom from the menu below to get started.</label>
                 <select id="classroom" name="classroom" onClick={handleClick}>
                 {options}
                 </select>
-            </form>
+            </form> */}
+            <p>Choose a classroom from the menu below to get started.</p>
+            <div className="dropdown mx-auto">
+                <a className="btn btn-info dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Choose a classroom
+                </a>
 
+                <ul className="dropdown-menu">
+                    {options}
+                </ul>
+            </div>
 
         </div>
     );
