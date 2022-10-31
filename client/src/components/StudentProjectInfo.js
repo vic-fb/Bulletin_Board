@@ -17,12 +17,14 @@ function StudentProjectInfo(props) {
     return (
         //upon log-in, user_id will be automatically collected
         <div className="StudentProjectInfo">
-            <nav className="NavBar">
-                <NavLink to='update-project' onClick={props.toggleViewCb}>Display a New Project</NavLink>
-                <NavLink to={`/classrooms/${project.classroom_id}`}>Back to Classroom</NavLink>
-            </nav>
+            <div className='row'>
+                <Link to='update-project' class="btn btn-outline-warning mt-2 w-auto ms-auto me-3" role="button" onClick={props.toggleViewCb}>Display a New Project</Link>
+            </div>
 
-            <h2>Welcome to {user.first_name}'s project page!</h2>
+            <div className='mx-auto'>
+                <h2>Welcome to {user.first_name}'s project page!</h2>
+            
+            
             <div className='grid'>
                 <div>
                     <img alt={project.title} src={project.image_url} />
@@ -30,10 +32,10 @@ function StudentProjectInfo(props) {
                 <div className='proj-info'>
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
-                    <a href={`${project.project_url}`} target='_blank'>Check out my project</a>
+                    <a class="btn btn-info" role="button" href={`${project.project_url}`} target='_blank'>Check out my project</a>
                 </div>
             </div>
-           
+        </div>
                 
         </div>
     );
