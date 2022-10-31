@@ -28,15 +28,12 @@ function UpdateAssignmentForm(props) {
         return props.classrooms.map((c) => (
             <option className="dropdown-item"
                 key={c.id}
-                id="classroom"
                 name="id"
-                value={setAssignmentFormData.id}
-                onChange={e => handleChange(e)}>
+                value={c.id}>
                 {c.classroom_name}
             </option>
         ))
     }
-
 
     function handleChange(event) {
         const value = event.target.value;
@@ -47,6 +44,10 @@ function UpdateAssignmentForm(props) {
             ...state,
             [name]: value
         }));
+    }
+
+    function handleClick(e) {
+        assignmentFormData.id = e.target.value;
     }
 
     function handleSubmit(event) {
@@ -62,7 +63,7 @@ function UpdateAssignmentForm(props) {
                
                 <div className="dropdown">
                     <label>Select a Classroom</label>
-                    <select className="form-select" aria-label="Default select example">
+                    <select className="form-select" aria-label="Default select example" id="classroom" name="id" onClick={handleClick}>
                         {listItems}
                     </select>
                 </div>
@@ -95,4 +96,3 @@ function UpdateAssignmentForm(props) {
 }
 
 export default UpdateAssignmentForm;
-

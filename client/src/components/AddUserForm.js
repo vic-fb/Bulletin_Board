@@ -7,7 +7,7 @@ function AddUserForm(props) {
         first_name: '',
         last_name: '',
         role: '',
-        classroom_id: ''
+        classroom_id: null
     }
 
     let [userFormData, setUserFormData] = useState(EMPTY_FORM);
@@ -28,16 +28,14 @@ function AddUserForm(props) {
         return props.classrooms.map((c) => (
             <option className="dropdown-item"
                 key={c.id} 
-                id="classroom"
+                // id="classroom"
                 name="classroom_id"
-                value={userFormData.classroom_id}
-                onClick={e => handleChange(e)}>
+                value={c.id}>
                     {c.classroom_name}
             </option>
         ))
     }
     
-
     function handleChange(event) {
         const value = event.target.value;
         const name = event.target.name;
@@ -47,6 +45,10 @@ function AddUserForm(props) {
             ...state,
             [name]: value
          }));
+    }
+
+    function handleClick(e) {
+       userFormData.classroom_id = e.target.value;
     }
     
     function handleSubmit(event) {
@@ -108,7 +110,7 @@ function AddUserForm(props) {
 
                 <div className="dropdown">
                     <label>Select a Classroom</label>
-                    <select className="form-select" aria-label="Default select example">
+                    <select className="form-select" aria-label="Default select example" id="classroom" name="classroom" onClick={handleClick}>
                         {listItems}
                     </select>
                 </div>

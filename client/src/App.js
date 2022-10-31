@@ -134,6 +134,7 @@ function getListItems(listItems) {
         .then(res => res.json())
         .then(json => {
           setUsers(json);
+          console.log(json);
           let user = json[json.length-1];
           if (user.role === 'student') {
             addInitialProject(user);
