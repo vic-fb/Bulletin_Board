@@ -19,7 +19,9 @@
 
 - Frontend runs on http://localhost:3000 and backend runs on http://localhost:5000
 
-## Database Schema:
+## Database Schema: 
+
+![Screen Shot 2022-10-31 at 6 35 23 PM](https://user-images.githubusercontent.com/110904967/199072502-137132b9-b120-4e63-b38a-bf71bb892b07.png)
 
 ## API Routes:
 
