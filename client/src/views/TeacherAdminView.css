@@ -1,60 +1,63 @@
 h1 {
-    margin-bottom: 1em;
-    margin-top: 1em;
-    color: darkgoldenrod;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  color: darkgoldenrod;
 }
 
 h2 {
-    text-align: center;
-    color: darkseagreen;
-    font-weight: bold;
+  text-align: center;
+  color: darkseagreen;
+  font-weight: bold;
 }
 
 .TeacherAdminView label {
-    display: block;
-    margin-bottom: 0.75em;
-    color: deepskyblue;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 0.75em;
+  color: deepskyblue;
+  font-weight: bold;
 }
 
 input {
-    display: block;
+  display: block;
 }
 
 .TeacherAdminGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 90%;
-    margin: 0 auto;
-    text-align: left;
-    column-gap: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 90%;
+  margin: 0 auto;
+  text-align: left;
+  column-gap: 2em;
 }
 
-.TeacherAdminGrid button{
-    margin-top: 1em;
+.TeacherAdminGrid button {
+  margin-top: 1em;
 }
 
 .radio-button {
-    font-weight: 400;
-    color: white;
-    margin-left: 1em;
+  font-weight: 400;
+  color: white;
+  margin-left: 1em;
 }
 
 input[type="radio"] {
-    margin-right: 0.5em;
-    display: inline;
+  margin-right: 0.5em;
+  display: inline;
 }
 
 .dropdown {
-    margin-bottom: 1em;
-    max-width: 80%;
+  margin-bottom: 1em;
+  max-width: 80%;
 }
 
 /* Make vertical lines b/w columns */
-.col3, .col2 {
-    border-left: 2px solid darkgoldenrod;
+.col3,
+.col2 {
+  border-left: 2px solid darkgoldenrod;
 }
 
-.col3, .col2, .col1 {
-    padding-left: 1em;
+.col3,
+.col2,
+.col1 {
+  padding-left: 1em;
 }

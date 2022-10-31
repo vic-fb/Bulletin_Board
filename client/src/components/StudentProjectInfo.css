@@ -1,29 +1,29 @@
 h2 {
-    color: white;
+  color: white;
 }
 
 h3 {
-    color: darkgoldenrod;
+  color: darkgoldenrod;
 }
 
 p {
-    color: honeydew;
+  color: honeydew;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    margin: 1em 10em;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: 1em 10em;
 }
 
 .grid img {
-    object-fit: contain;
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    height: 100%;
+  object-fit: contain;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
 }
 
 .proj-info {
-    margin-top: 1em;
-    padding-left: 1em;
+  margin-top: 1em;
+  padding-left: 1em;
 }
