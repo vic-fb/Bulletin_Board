@@ -4,12 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 function UpdateAssignmentForm(props) {
-    // let EMPTY_FORM = {
-    //     classroom_name: '',
-    //     assignment_title: '',
-    //     assignment_desc: '',
-    //     id: ''
-    // }
 
     const navigate = useNavigate();
 
@@ -65,13 +59,9 @@ function UpdateAssignmentForm(props) {
                 <div className="dropdown">
                     <label>Select a Classroom</label>
                     <select className="form-select" aria-label="Default select example" id="classroom" name="id" onClick={handleClick}>
+                        <option selected></option>
                         {listItems}
                     </select>
-                    {/* <FormDropdownMenu
-                        assignmentFormData={assignmentFormData}
-                        getListItemsCb={props.getListItemsCb}
-                        classrooms={props.classrooms}
-                    /> */}
                 </div>
 
                 <label>

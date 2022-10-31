@@ -34,6 +34,7 @@ function UserFormDropdownMenu(props) {
     return (
         <div className='UserFormDropdownMenu'>
             <select className="form-select" aria-label="Default select example" id="classroom" name="classroom" onClick={handleAddUser}>
+                <option selected></option>
                 {listItems}
             </select>
         </div>
