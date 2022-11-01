@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-// import { Route, Routes, useNavigate } from 'react-router-dom';
+import React from "react";
 import AddClassroomForm from "../components/AddClassroomForm";
 import AddUserForm from "../components/AddUserForm";
 import UpdateAssignmentForm from "../components/UpdateAssignmentForm";
@@ -40,5 +39,3 @@ function TeacherAdminView(props) {
 }
 
 export default TeacherAdminView;
-
-// Think of new page name to reflect that teachers, classrooms, and students are being added/created

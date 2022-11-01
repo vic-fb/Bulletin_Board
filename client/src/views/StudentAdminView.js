@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from 'react-router-dom';
 import UpdateProjectForm from "../components/UpdateProjectForm";
 import "./StudentAdminView.css";
 
