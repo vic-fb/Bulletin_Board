@@ -19,7 +19,7 @@
 
 - Frontend runs on http://localhost:3000 and backend runs on http://localhost:5000
 
-## Database Schema: 
+## Database Schema:
 
 ![Screen Shot 2022-10-31 at 6 35 23 PM](https://user-images.githubusercontent.com/110904967/199072502-137132b9-b120-4e63-b38a-bf71bb892b07.png)
 
@@ -230,5 +230,21 @@ Response body:
     ...
 ]
 ```
+
+## Feature Extension Ideas
+
+- Admin permissions for teacher for the entire site
+- Teacher approval required before a student can post their work
+- Button for teacher to publish new assignment/go live
+- Student logins to make sure students can only update their own page
+- Embed project file instead of a link that opens the project in a new page
+- Reset button for teacher to clear out all projects in order to start accepting new projects
+- Teacher can customize classroom page design to match project topic
+- Comment feature where students can leave each other comments on their project pages
+- Students can customize aspects of their personal page, such as background, colors, or font
+- Anonymous voting system to choose a feature project to display in a special section on the classroom page
+- Import student list from a csv file to easily populate student pages at initial set-up
+- Navigation allowing users to go from one student project to another without returning to the classroom page
+- Teacher-activated notification feature to send an email alert to students to upload their projects
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
