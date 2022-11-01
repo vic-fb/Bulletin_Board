@@ -23,6 +23,10 @@
 
 ![Screen Shot 2022-10-31 at 6 35 23 PM](https://user-images.githubusercontent.com/110904967/199072502-137132b9-b120-4e63-b38a-bf71bb892b07.png)
 
+## Frontend Architecture:
+
+![Bulletin Board Architecture](https://user-images.githubusercontent.com/110904967/199202208-112dba15-f0a3-49a7-9f2f-826b306e8e3b.png)
+
 ## API Routes:
 
 ### GET /users
