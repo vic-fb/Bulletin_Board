@@ -20,7 +20,7 @@ function NavDropdownMenu(props) {
           className="dropdown-item"
           to={`/classrooms/${c.id}`}
           key={c.id}
-          value={c.id}
+          value={c.classroom_name}
         >
           {c.classroom_name}{" "}
         </Link>

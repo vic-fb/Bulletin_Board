@@ -13,7 +13,6 @@ function App(props) {
   let [classrooms, setClassrooms] = useState([]);
   let [studentProjects, setStudentProjects] = useState([]);
   let [options, setOptions] = useState([]);
-  let [listItems, setListItems] = useState([]);
 
   const navigate = useNavigate();
 
@@ -25,10 +24,6 @@ function App(props) {
 
   function getOptions(options) {
     setOptions(options);
-  }
-
-  function getListItems(listItems) {
-    setListItems(listItems);
   }
 
   const getUsers = () => {
@@ -135,6 +130,7 @@ function App(props) {
       });
   };
 
+  // This function automatically runs when a new student is added to a classroom.
   const addInitialProject = (user) => {
     let initialProject = {
       user_id: user.id,
@@ -212,7 +208,7 @@ function App(props) {
               addClassroomCb={addClassroom}
               addUserCb={addUser}
               classrooms={classrooms}
-              getListItemsCb={getListItems}
+              getOptionsCb={getOptions}
               users={users}
               addInitialProjectCb={addInitialProject}
               updateAssignmentCb={updateAssignment}

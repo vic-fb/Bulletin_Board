@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import FormDropdownMenu from './FormDropdownMenu';
 
 function UpdateAssignmentForm(props) {
   const navigate = useNavigate();
 
   let [assignmentFormData, setAssignmentFormData] = useState([]);
-  let [listItems, setListItems] = useState([]);
+  let [options, setOptions] = useState([]);
 
   useEffect(() => {
-    let temp = generateListItems();
-    setListItems(temp);
-    props.getListItemsCb(listItems);
+    let temp = generateOptions();
+    setOptions(temp);
+    props.getOptionsCb(options);
   }, [props.classrooms]); // call whenever classrooms changes
 
-  /* had to create generateListItems() outside rendering statement b/c page was
+  /* had to create generateOptions() outside rendering statement b/c page was
     being drawn before classrooms was loaded, so had to create options state and
     useEffect function to make sure data was available before page was rendered*/
-  function generateListItems() {
+  function generateOptions() {
     return props.classrooms.map((c) => (
       <option className="dropdown-item" key={c.id} name="id" value={c.id}>
         {c.classroom_name}
@@ -46,7 +45,6 @@ function UpdateAssignmentForm(props) {
   }
 
   return (
-    //upon teacher log-in, classroom_id will be automatically collected
     <div className="UpdateAssignmentForm">
       <form onSubmit={handleSubmit}>
         <div className="dropdown">
@@ -59,7 +57,7 @@ function UpdateAssignmentForm(props) {
             onClick={handleClick}
           >
             <option selected></option>
-            {listItems}
+            {options}
           </select>
         </div>
 

@@ -4,7 +4,11 @@ import "./StudentProjectInfo.css";
 
 function StudentProjectInfo(props) {
   let { id } = useParams();
+
+  // Use the student project ID from the URL to find the correct project (necessary until a login is created)
   let project = props.studentProjects.find((p) => p.id === Number(id));
+
+  // Identify the user through the project's user_id property (necessary until a login function is created)
   let user = props.users.find((u) => u.id === project.user_id);
 
   if (props.users.length === 0 || project.length === 0) {
@@ -12,7 +16,6 @@ function StudentProjectInfo(props) {
   }
 
   return (
-    //upon log-in, user_id will be automatically collected
     <div className="StudentProjectInfo">
       <div className="row">
         <Link

@@ -4,6 +4,8 @@ import AddUserForm from "../components/AddUserForm";
 import UpdateAssignmentForm from "../components/UpdateAssignmentForm";
 import "./TeacherAdminView.css";
 
+// This view contains 3 form components: AddClassroomForm, AddUserForm, and UpdateAssignmentForm.
+
 function TeacherAdminView(props) {
   return (
     <div className="TeacherAdminView">
@@ -19,7 +21,7 @@ function TeacherAdminView(props) {
           <AddUserForm
             addUserCb={props.addUserCb}
             classrooms={props.classrooms}
-            getListItemsCb={props.getListItemsCb}
+            getOptionsCb={props.getOptionsCb}
             users={props.users}
             addInitialProjectCb={props.addInitialProjectCb}
           />
@@ -29,7 +31,7 @@ function TeacherAdminView(props) {
           <h2>Update an Assignment</h2>
           <UpdateAssignmentForm
             updateAssignmentCb={props.updateAssignmentCb}
-            getListItemsCb={props.getListItemsCb}
+            getOptionsCb={props.getOptionsCb}
             classrooms={props.classrooms}
           />
         </div>

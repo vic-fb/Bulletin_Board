@@ -31,7 +31,6 @@ function AddUserForm(props) {
   }
 
   return (
-    //upon teacher log-in, classroom_id will be automatically collected
     <div className="AddUserForm">
       <form onSubmit={handleSubmit}>
         <label>
@@ -82,7 +81,7 @@ function AddUserForm(props) {
           <label>Select a Classroom</label>
           <UserFormDropdownMenu
             userFormData={userFormData}
-            getListItemsCb={props.getListItemsCb}
+            getOptionsCb={props.getOptionsCb}
             classrooms={props.classrooms}
           />
         </div>

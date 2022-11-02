@@ -4,22 +4,22 @@ import "./ClassroomView.css";
 
 function ClassroomView(props) {
   let { id } = useParams();
-  let classroom = props.classrooms.find((c) => c.id === Number(id));
+  let classroom = props.classrooms.find((c) => c.id === Number(id)); // find classroom in db that matches URL id
   let classroomProjects = props.studentProjects.filter(
-    (p) => p.classroom_id === Number(id)
+    (p) => p.classroom_id === Number(id) // get projects that belong to that classroom
   );
   let classroomStudents = props.users.filter(
     (s) => s.classroom_id === Number(id)
-  );
+  ); // get students that belong to that classroom
 
   if (props.classrooms.length === 0 || props.studentProjects.length === 0) {
     return <h2>Loading</h2>;
-  }
+  } // display loading message until useEffect is able to get data from the db
 
   function projectAuthorName(projectObj) {
     let authorObj = classroomStudents.find((s) => s.id === projectObj.user_id);
     return authorObj.first_name;
-  }
+  } // get first name of student who created the project
 
   return (
     <div className="ClassroomView">
