@@ -8,12 +8,23 @@
 
 ## Getting Started:
 
-- Run npm migrate.
+- Create a .env file:
 
-- To run the backend: Run npm start.
+  ```
+  DB_HOST = localhost
+  DB_NAME = bulletin_board
+  DB_USER = root
+  DB_PASSWORD = root
+  ```
 
 - To run the database: Type mysql into the terminal and run the following command:
-  USE bulletin_board;
+  CREATE DATABASE bulletin_board;
+
+- Run npm install.
+
+- Run npm run migrate.
+
+- To run the backend: Run npm start.
 
 - To run the frontend: cd into client and run npm start.
 
