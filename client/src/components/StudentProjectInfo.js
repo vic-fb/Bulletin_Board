@@ -1,15 +1,15 @@
-import React from "react";
-import { useParams, Link, NavLink } from "react-router-dom";
-import "./StudentProjectInfo.css";
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
+import './StudentProjectInfo.css';
 
 function StudentProjectInfo(props) {
-  let { id } = useParams();
+  const { id } = useParams();
 
   // Use the student project ID from the URL to find the correct project (necessary until a login is created)
-  let project = props.studentProjects.find((p) => p.id === Number(id));
+  const project = props.studentProjects.find((p) => p.id === Number(id));
 
   // Identify the user through the project's user_id property (necessary until a login function is created)
-  let user = props.users.find((u) => u.id === project.user_id);
+  const user = props.users.find((u) => u.id === project.user_id);
 
   if (props.users.length === 0 || project.length === 0) {
     return <h2>Loading</h2>;
@@ -29,7 +29,11 @@ function StudentProjectInfo(props) {
       </div>
 
       <div className="mx-auto">
-        <h2>Welcome to {user.first_name}'s project page!</h2>
+        <h2>
+          Welcome to
+          {user.first_name}
+          's project page!
+        </h2>
 
         <div className="grid">
           <div>
@@ -39,10 +43,11 @@ function StudentProjectInfo(props) {
             <h3>{project.title}</h3>
             <p>{project.description}</p>
             <a
-              class="btn btn-info"
+              className="btn btn-info"
               role="button"
               href={`${project.project_url}`}
               target="_blank"
+              rel="noreferrer"
             >
               Check out my project
             </a>

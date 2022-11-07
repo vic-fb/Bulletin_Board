@@ -1,8 +1,8 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import NavDropdownMenu from "./NavDropdownMenu";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import NavDropdownMenu from './NavDropdownMenu';
 
-function NavBar(props) {
+function NavBar({ user, classrooms, getOptionsCb }) {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -18,9 +18,10 @@ function NavBar(props) {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          {user.role === 'teacher' && (
           <ul className="navbar-nav mb-2 mb-lg-0">
             <li className="nav-item dropdown me-auto my-auto">
               <a
@@ -33,12 +34,13 @@ function NavBar(props) {
                 Classrooms
               </a>
               <NavDropdownMenu
-                classrooms={props.classrooms}
-                getOptionsCb={props.getOptionsCb}
+                classrooms={classrooms}
+                getOptionsCb={getOptionsCb}
               />
             </li>
           </ul>
-
+          )}
+          {user.role === 'teacher' && (
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <NavLink className="nav-link" to="teacher-admin">
@@ -46,6 +48,7 @@ function NavBar(props) {
               </NavLink>
             </li>
           </ul>
+          )}
         </div>
       </div>
     </nav>

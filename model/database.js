@@ -1,34 +1,33 @@
-require("dotenv").config();
-const mysql = require("mysql");
-const fs = require("fs");
+require('dotenv').config();
+const mysql = require('mysql');
+const fs = require('fs');
 
-const DB_HOST = process.env.DB_HOST;
-const DB_USER = process.env.DB_USER;
-const DB_PASS = process.env.DB_PASS;
-const DB_NAME = process.env.DB_NAME;
+const { DB_HOST } = process.env;
+const { DB_USER } = process.env;
+
+const { DB_PASS } = process.env;
+const { DB_NAME } = process.env;
 
 const con = mysql.createConnection({
-  host: DB_HOST || "127.0.0.1",
-  user: DB_USER || "root",
+  host: DB_HOST || '127.0.0.1',
+  user: DB_USER || 'root',
   password: DB_PASS,
-  database: DB_NAME || "bulletin_board",
-  multipleStatements: true
+  database: DB_NAME || 'bulletin_board',
+  multipleStatements: true,
 });
 
-con.connect(function(err) {
+con.connect((err) => {
   if (err) throw err;
-  console.log("Connected!");
+  console.log('Connected!');
 
-  let sql = fs.readFileSync(__dirname+"/init_db.sql").toString();
+  const sql = fs.readFileSync(`${__dirname}/init_db.sql`).toString();
   console.log(sql);
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table creation `items` was successful!");
+  con.query(sql, (error) => {
+    if (error) throw error;
+    console.log('Table creation `items` was successful!');
 
-    console.log("Closing...");
+    console.log('Closing...');
   });
 
   con.end();
 });
-
-

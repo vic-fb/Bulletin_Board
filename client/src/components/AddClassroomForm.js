@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function AddClassroomForm(props) {
-  let EMPTY_FORM = {
-    classroom_name: "",
-    assignment_title: "",
-    assignment_desc: "",
+  const EMPTY_FORM = {
+    classroom_name: '',
+    assignment_title: '',
+    assignment_desc: '',
   };
 
   const navigate = useNavigate();
 
-  let [classroomFormData, setClassroomFormData] = useState(EMPTY_FORM);
+  const [classroomFormData, setClassroomFormData] = useState(EMPTY_FORM);
 
   function handleChange(event) {
-    const value = event.target.value;
-    const name = event.target.name;
+    const { value } = event.target;
+    const { name } = event.target;
 
     setClassroomFormData((state) => ({
       ...state,
@@ -26,11 +26,11 @@ function AddClassroomForm(props) {
     event.preventDefault();
     props.addClassroomCb(classroomFormData);
     setClassroomFormData(EMPTY_FORM);
-    navigate(`/`);
+    navigate('/');
   }
 
   return (
-    //upon log-in, user_id will be automatically collected
+    // upon log-in, user_id will be automatically collected
     <div className="AddTeacherForm">
       <form onSubmit={handleSubmit}>
         <label>
@@ -60,7 +60,7 @@ function AddClassroomForm(props) {
             name="assignment_desc"
             value={classroomFormData.assignment_desc}
             onChange={(e) => handleChange(e)}
-          ></textarea>
+          />
         </label>
 
         <button type="submit" className="btn btn-info">

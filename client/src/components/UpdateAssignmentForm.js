@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function UpdateAssignmentForm(props) {
   const navigate = useNavigate();
 
-  let [assignmentFormData, setAssignmentFormData] = useState([]);
-  let [options, setOptions] = useState([]);
+  const [assignmentFormData, setAssignmentFormData] = useState([]);
+  const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    let temp = generateOptions();
+    const temp = generateOptions();
     setOptions(temp);
     props.getOptionsCb(options);
   }, [props.classrooms]); // call whenever classrooms changes
 
   /* had to create generateOptions() outside rendering statement b/c page was
     being drawn before classrooms was loaded, so had to create options state and
-    useEffect function to make sure data was available before page was rendered*/
+    useEffect function to make sure data was available before page was rendered */
   function generateOptions() {
     return props.classrooms.map((c) => (
       <option className="dropdown-item" key={c.id} name="id" value={c.id}>
@@ -25,8 +25,8 @@ function UpdateAssignmentForm(props) {
   }
 
   function handleChange(event) {
-    const value = event.target.value;
-    const name = event.target.name;
+    const { value } = event.target;
+    const { name } = event.target;
 
     setAssignmentFormData((state) => ({
       ...state,
@@ -56,7 +56,7 @@ function UpdateAssignmentForm(props) {
             name="id"
             onClick={handleClick}
           >
-            <option selected></option>
+            <option selected />
             {options}
           </select>
         </div>
@@ -78,7 +78,7 @@ function UpdateAssignmentForm(props) {
             name="assignment_desc"
             value={assignmentFormData.assignment_desc}
             onChange={(e) => handleChange(e)}
-          ></textarea>
+          />
         </label>
 
         <button type="submit" className="btn btn-info">

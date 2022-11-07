@@ -1,8 +1,8 @@
-import React from "react";
-import AddClassroomForm from "../components/AddClassroomForm";
-import AddUserForm from "../components/AddUserForm";
-import UpdateAssignmentForm from "../components/UpdateAssignmentForm";
-import "./TeacherAdminView.css";
+import React from 'react';
+import AddClassroomForm from '../components/AddClassroomForm';
+import AddUserForm from '../components/AddUserForm';
+import UpdateAssignmentForm from '../components/UpdateAssignmentForm';
+import './TeacherAdminView.css';
 
 // This view contains 3 form components: AddClassroomForm, AddUserForm, and UpdateAssignmentForm.
 

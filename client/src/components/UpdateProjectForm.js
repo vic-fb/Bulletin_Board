@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { useParams, useOutletContext } from "react-router-dom";
+import React, { useState } from 'react';
+import { useParams, useOutletContext } from 'react-router-dom';
 
 function UpdateProjectForm(props) {
-  let { id } = useParams();
+  const { id } = useParams();
 
-  let project = props.studentProjects.find((p) => p.id === Number(id));
-  let userId = project.user_id;
-  let classroomId = project.classroom_id;
+  const project = props.studentProjects.find((p) => p.id === Number(id));
+  const userId = project.user_id;
+  const classroomId = project.classroom_id;
 
-  let EMPTY_FORM = {
+  const EMPTY_FORM = {
     user_id: userId,
     title: project.title,
     description: project.description,
     image_url: project.image_url,
     project_url: project.project_url,
     classroom_id: classroomId,
-    id: id,
+    id,
   };
 
-  let [projectFormData, setProjectFormData] = useState(EMPTY_FORM);
+  const [projectFormData, setProjectFormData] = useState(EMPTY_FORM);
   const [toggleView] = useOutletContext();
 
   function handleChange(event) {
-    const value = event.target.value;
-    const name = event.target.name;
+    const { value } = event.target;
+    const { name } = event.target;
 
     setProjectFormData((state) => ({
       ...state,
@@ -38,7 +38,7 @@ function UpdateProjectForm(props) {
   }
 
   return (
-    //upon log-in, user_id & classroom_id will be automatically collected
+    // upon log-in, user_id & classroom_id will be automatically collected
     <div className="UpdateProjectForm">
       <form onSubmit={handleSubmit}>
         <label>
@@ -58,7 +58,7 @@ function UpdateProjectForm(props) {
             name="description"
             value={projectFormData.description}
             onChange={(e) => handleChange(e)}
-          ></textarea>
+          />
         </label>
 
         <label>

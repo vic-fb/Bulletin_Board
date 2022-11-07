@@ -1,6 +1,6 @@
-import React from "react";
-import "./HomeView.css";
-import NavDropdownMenu from "../components/NavDropdownMenu";
+import React from 'react';
+import './HomeView.css';
+import NavDropdownMenu from '../components/NavDropdownMenu';
 
 function HomeView(props) {
   return (

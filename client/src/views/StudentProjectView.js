@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
-import StudentProjectInfo from "../components/StudentProjectInfo";
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import StudentProjectInfo from '../components/StudentProjectInfo';
 
 function StudentProjectView(props) {
-  let [view, setView] = useState(true);
+  const [view, setView] = useState(true);
 
   /* This function makes it so the StudentView displays either the info of the student's current
    project (StudentProjectInfo component) OR the StudentAdminView (containing the UpdateProejctForm

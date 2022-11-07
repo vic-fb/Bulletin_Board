@@ -1,6 +1,6 @@
-import React from "react";
-import UpdateProjectForm from "../components/UpdateProjectForm";
-import "./StudentAdminView.css";
+import React from 'react';
+import UpdateProjectForm from '../components/UpdateProjectForm';
+import './StudentAdminView.css';
 
 function StudentAdminView(props) {
   return (

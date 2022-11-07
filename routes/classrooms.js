@@ -1,39 +1,37 @@
-var express = require('express');
-var router = express.Router();
-const db = require("../model/helper");
+const express = require('express');
+
+const router = express.Router();
+const db = require('../model/helper');
 
 /* GET classrooms listing. */
 router.get('/', async (req, res) => {
-    try {
-      let results = await db("SELECT * FROM classrooms");
-      let classrooms = results.data;
-      res.send(classrooms);
-    } catch (err) {
-      res.status(500).send({error: err.message})
-    }
-  });
+  try {
+    const results = await db('SELECT * FROM classrooms');
+    const classrooms = results.data;
+    res.send(classrooms);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 //   /* GET classroom by ID. */
-  router.get('/:id', async (req, res) => {
-
-    try {
-      let classroom = await db(`SELECT * FROM classrooms WHERE id = ${req.params.id}`);
-      console.log(classroom);
-      if (classroom.data.length === 0){
-        res.status(404).send({ error: "Classroom not found."})
-      } else {
-        res.send(classroom.data[0]);
-      }
-    } catch (err) {
-      res.status(500).send({error: err.message})
+router.get('/:id', async (req, res) => {
+  try {
+    const classroom = await db(`SELECT * FROM classrooms WHERE id = ${req.params.id}`);
+    console.log(classroom);
+    if (classroom.data.length === 0) {
+      res.status(404).send({ error: 'Classroom not found.' });
+    } else {
+      res.send(classroom.data[0]);
     }
-  });
-
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 //   /* POST new classroom */
-  router.post('/', async(req, res) => {
-
-    let sql = `
+router.post('/', async (req, res) => {
+  const sql = `
       INSERT INTO classrooms (classroom_name, assignment_title, assignment_desc)
       VALUES (
         "${req.body.classroom_name}",
@@ -42,20 +40,19 @@ router.get('/', async (req, res) => {
         )
     `;
 
-    try {
-      await db(sql);
-      let result = await db("SELECT * FROM classrooms");
-      res.status(201).send(result.data);
-
-    } catch (err) {
-      res.status(500).send({ error: err.message })
-    }
-  });
+  try {
+    await db(sql);
+    const result = await db('SELECT * FROM classrooms');
+    res.status(201).send(result.data);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 /* PUT existing project with new project content */
 router.put('/:id', async (req, res) => {
   console.log(req);
-  let sql = `
+  const sql = `
       UPDATE classrooms
       SET
         assignment_title = '${req.body.assignment_title}',
@@ -65,33 +62,33 @@ router.put('/:id', async (req, res) => {
     `;
 
   try {
-    let classroom = await db(`SELECT * FROM classrooms WHERE id = ${req.params.id}`);
+    const classroom = await db(`SELECT * FROM classrooms WHERE id = ${req.params.id}`);
     if (classroom.data.length === 0) {
-      res.status(404).send({ error: "There is no existing assignment to replace." })
+      res.status(404).send({ error: 'There is no existing assignment to replace.' });
     } else {
       await db(sql);
-      let result = await db(`SELECT * FROM classrooms`);
+      const result = await db('SELECT * FROM classrooms');
       res.status(201).send(result.data);
     }
   } catch (err) {
-    res.status(500).send({ error: err.message })
+    res.status(500).send({ error: err.message });
   }
 });
 
-  /* DELETE classroom */
-  router.delete('/:id', async (req, res) => {
-    try {
-      let classroom = await db(`SELECT * FROM classrooms WHERE id = ${req.params.id}`);
-      if (classroom.data.length === 0){
-        res.status(404).send({ error: "Classroom not found."})
-      } else {
-        await db(`DELETE FROM classrooms WHERE id = ${req.params.id}`);
-        let results = await db("SELECT * FROM classrooms");
-        res.send(results.data);
-      }
-    } catch (err) {
-      res.status(500).send({error: err.message})
+/* DELETE classroom */
+router.delete('/:id', async (req, res) => {
+  try {
+    const classroom = await db(`SELECT * FROM classrooms WHERE id = ${req.params.id}`);
+    if (classroom.data.length === 0) {
+      res.status(404).send({ error: 'Classroom not found.' });
+    } else {
+      await db(`DELETE FROM classrooms WHERE id = ${req.params.id}`);
+      const results = await db('SELECT * FROM classrooms');
+      res.send(results.data);
     }
-  });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 module.exports = router;

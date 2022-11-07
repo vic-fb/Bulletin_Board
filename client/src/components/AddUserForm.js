@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import UserFormDropdownMenu from "./UserFormDropdownMenu";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserFormDropdownMenu from './UserFormDropdownMenu';
 
 function AddUserForm(props) {
-  let EMPTY_FORM = {
-    first_name: "",
-    last_name: "",
-    role: "",
+  const EMPTY_FORM = {
+    first_name: '',
+    last_name: '',
+    role: '',
     classroom_id: null,
   };
 
-  let [userFormData, setUserFormData] = useState(EMPTY_FORM);
+  const [userFormData, setUserFormData] = useState(EMPTY_FORM);
   const navigate = useNavigate();
 
   function handleChange(event) {
-    const value = event.target.value;
-    const name = event.target.name;
+    const { value } = event.target;
+    const { name } = event.target;
 
     setUserFormData((state) => ({
       ...state,
@@ -60,7 +60,7 @@ function AddUserForm(props) {
             type="radio"
             name="role"
             value="teacher"
-            checked={userFormData.role === "teacher"}
+            checked={userFormData.role === 'teacher'}
             onChange={(e) => handleChange(e)}
           />
           Teacher
@@ -71,7 +71,7 @@ function AddUserForm(props) {
             type="radio"
             name="role"
             value="student"
-            checked={userFormData.role === "student"}
+            checked={userFormData.role === 'student'}
             onChange={(e) => handleChange(e)}
           />
           Student
