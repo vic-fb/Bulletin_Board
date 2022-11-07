@@ -8,11 +8,11 @@ const SECRET_KEY = process.env.SECRET_KEY || 'this weak (!!) secret key';
 const { BCRYPT_WORK_FACTOR } = require ("../config");
 
 router.post('/register', async (req, res) => {
-  const { first_name, last_name, password, email, role } = req.body;
+  const { first_name, last_name, password, email, role, classroom_id } = req.body;
   const hash = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
   db(`
-  INSERT INTO users (first_name, last_name, password, email, role)
-  VALUES ('${first_name}', '${last_name}', '${hash}', '${email}', '${role}')
+  INSERT INTO users (first_name, last_name, password, email, role, classroom_id)
+  VALUES ('${first_name}', '${last_name}', '${hash}', '${email}', '${role}', '${classroom_id}')
   `)
   .then (() => res.send({ message: 'Registration succeeded' }))
   .catch ((err) => res.status(500).send({ error: err.message }))
