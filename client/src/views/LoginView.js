@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function LoginView(props) {
+function LoginView({ loginError, loginCb }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,23 +20,23 @@ function LoginView(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.loginCb(email, password);
+    loginCb(email, password);
   }
 
   return (
-    <div className="LoginView row">
+    <div className="LoginView col1">
       <div className="col-4 offset-4">
-        <h2>Login</h2>
+        <h2 className="row justify-content-center">Login</h2>
 
         {
-          props.loginError && (
-            <div className="alert alert-danger">{props.loginError}</div>
+          loginError && (
+            <div className="alert alert-danger">{loginError}</div>
           )
         }
 
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>
+          <div className="form-group row">
+            <label htmlFor="emailInput" className="text-light">
               Email
               <input
                 type="text"
@@ -45,25 +45,26 @@ function LoginView(props) {
                 className="form-control"
                 value={email}
                 onChange={handleChange}
+                aria-required
               />
             </label>
           </div>
 
-          <div className="form-group">
-            <label>
+          <div className="form-group row">
+            <label htmlFor="passwordInput" className="text-light">
               Password
               <input
                 type="password"
                 name="passwordInput"
-                required
                 className="form-control"
                 value={password}
                 onChange={handleChange}
+                aria-required
               />
             </label>
           </div>
 
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-secondary row">Submit</button>
         </form>
       </div>
     </div>

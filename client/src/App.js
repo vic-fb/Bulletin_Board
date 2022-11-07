@@ -13,31 +13,34 @@ import Local from './helpers/Local';
 import {
   getUsers, getProjects, getClassrooms, logUserIn, addClassroom, addUser, createProject,
 } from './api';
+import PublicRoute from './components/PublicRoute';
 
-function App(props) {
+function App({ toggleViewCb, toggleView }) {
   const [users, setUsers] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
   const [studentProjects, setStudentProjects] = useState([]);
   const [options, setOptions] = useState([]);
   const [user, setUser] = useState([]);
   const [loginErrorMsg, setLoginErrorMsg] = useState('');
+  const isError = (response) => typeof response === 'string';
 
   const navigate = useNavigate();
 
   async function doLogin(email, password) {
-    try {
-      const response = await logUserIn(password, email);
+    const response = await logUserIn(password, email);
+    if (isError(response)) {
+      setLoginErrorMsg('Login failed');
+    } else {
       Local.saveUserInfo(response.token, response.user);
       setUser(response.user);
       setLoginErrorMsg('');
-      navigate('/');
-    } catch (err) {
-      setLoginErrorMsg('Login failed');
+      navigate('/'); // add if somewhere here
     }
   }
 
   function logUserOut() {
     Local.removeUserInfo();
+    navigate('/login');
     setUser(null);
   }
 
@@ -47,8 +50,10 @@ function App(props) {
     getClassrooms()
       .then((classroomsData) => setClassrooms(classroomsData));
     getProjects()
-      .then((projectsData) => setClassrooms(projectsData));
-  }, [studentProjects]);
+      .then((projectsData) => setStudentProjects(projectsData));
+    const userData = Local.getUser();
+    setUser(userData);
+  }, []);
 
   function getOptions(options) {
     setOptions(options);
@@ -72,7 +77,7 @@ function App(props) {
 
   const addNewClassroom = (newClassroom) => {
     addClassroom(newClassroom)
-      .then((classrooms) => setClassrooms(classrooms));
+      .then((classroomsData) => setClassrooms(classroomsData));
   };
 
   const updateAssignment = (newAssignment) => {
@@ -98,6 +103,8 @@ function App(props) {
         const projects = await createProject({ ...newUser, id });
         // it used to navigate to the classroom when adding an initial project?
         setStudentProjects(projects);
+        const usersData = await getUsers();
+        setUsers(usersData);
       }
     } catch (error) {
       console.log(error.message);
@@ -109,13 +116,15 @@ function App(props) {
     <div className="App">
       <NavBar classrooms={classrooms} getOptionsCb={getOptions} user={user} onLogout={logUserOut} />
       <Routes>
-        <Route // TODO If here and user is already logged in, redirect to home!
+        <Route
           path="/login"
           element={(
-            <LoginView
-              loginCb={(u, p) => doLogin(u, p)}
-              loginError={loginErrorMsg}
-            />
+            <PublicRoute>
+              <LoginView
+                loginCb={(u, p) => doLogin(u, p)}
+                loginError={loginErrorMsg}
+              />
+            </PublicRoute>
         )}
         />
 
@@ -123,39 +132,45 @@ function App(props) {
           path="/"
           element={(
             <PrivateRoute>
-              <HomeView classrooms={classrooms} getOptionsCb={getOptions} />
+              <HomeView classrooms={classrooms} getOptionsCb={getOptions} user={user} />
             </PrivateRoute>
         )}
         />
         <Route
           path="classrooms/:id"
           element={(
-            <ClassroomView
-              classrooms={classrooms}
-              studentProjects={studentProjects}
-              users={users}
-            />
+            <PrivateRoute>
+              <ClassroomView
+                classrooms={classrooms}
+                studentProjects={studentProjects}
+                users={users}
+              />
+            </PrivateRoute>
           )}
         />
 
         <Route
           path="student-projects/:id"
           element={(
-            <StudentProjectView
-              users={users}
-              studentProjects={studentProjects}
-              toggleViewCb={props.toggleView}
-            />
+            <PrivateRoute>
+              <StudentProjectView
+                user={user}
+                studentProjects={studentProjects}
+                toggleViewCb={toggleView}
+              />
+            </PrivateRoute>
           )}
         >
           <Route
             path="update-project"
             element={(
-              <StudentAdminView
-                updateProjectCb={updateProject}
-                toggleViewCb={props.toggleViewCb}
-                studentProjects={studentProjects}
-              />
+              <PrivateRoute>
+                <StudentAdminView
+                  updateProjectCb={updateProject}
+                  toggleViewCb={toggleViewCb}
+                  studentProjects={studentProjects}
+                />
+              </PrivateRoute>
             )}
           />
         </Route>
