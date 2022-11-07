@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-function UserFormDropdownMenu(props) {
+function UserFormDropdownMenu({ getOptionsCb, classrooms, userFormData }) {
   const [options, setOptions] = useState([]);
 
-  useEffect(() => {
-    const temp = generateOptions();
-    setOptions(temp);
-    props.getOptionsCb(options);
-  }, [props.classrooms]); // call whenever classrooms changes
-
   /* had to create generateOptions() outside rendering statement b/c page was
-    being drawn before classrooms was loaded, so had to create options state and
-    useEffect function to make sure data was available before page was rendered */
+      being drawn before classrooms was loaded, so had to create options state and
+      useEffect function to make sure data was available before page was rendered */
   function generateOptions() {
-    return props.classrooms.map((c) => (
+    return classrooms.map((c) => (
       <option
         className="dropdown-item"
         key={c.id}
@@ -25,8 +19,14 @@ function UserFormDropdownMenu(props) {
     ));
   }
 
+  useEffect(() => {
+    const temp = generateOptions();
+    setOptions(temp);
+    getOptionsCb(options);
+  }, [classrooms]); // call whenever classrooms changes
+
   function handleAddUser(e) {
-    props.userFormData.classroom_id = e.target.value;
+    userFormData.classroom_id = e.target.value;
   }
 
   return (
@@ -38,7 +38,6 @@ function UserFormDropdownMenu(props) {
         name="classroom"
         onClick={handleAddUser}
       >
-        <option selected />
         {options}
       </select>
     </div>

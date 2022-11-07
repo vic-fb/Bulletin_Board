@@ -2,17 +2,18 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './ClassroomView.css';
 
-function ClassroomView(props) {
+function ClassroomView({ classrooms, studentProjects, users }) {
   const { id } = useParams();
-  const classroom = props.classrooms.find((c) => c.id === Number(id)); // find classroom in db that matches URL id
-  const classroomProjects = props.studentProjects.filter(
+  // find classroom in db that matches URL id
+  const classroom = classrooms.find((c) => c.id === Number(id));
+  const classroomProjects = studentProjects.filter(
     (p) => p.classroom_id === Number(id), // get projects that belong to that classroom
   );
-  const classroomStudents = props.users.filter(
+  const classroomStudents = users.filter(
     (s) => s.classroom_id === Number(id),
   ); // get students that belong to that classroom
 
-  if (props.classrooms.length === 0 || props.studentProjects.length === 0) {
+  if (classrooms.length === 0 || studentProjects.length === 0) {
     return <h2>Loading</h2>;
   } // display loading message until useEffect is able to get data from the db
 
@@ -24,15 +25,11 @@ function ClassroomView(props) {
   return (
     <div className="ClassroomView">
       <h2>
-        Welcome to the Bulletin Board for
-        {classroom.classroom_name}
-        !
+        {`Welcome to the Bulletin Board for ${classroom.classroom_name}!`}
       </h2>
 
       <h3>
-        {' '}
-        Current Assignment:
-        {classroom.assignment_title}
+        {`Current Assignment: ${classroom.assignment_title}`}
       </h3>
 
       <p>{classroom.assignment_desc}</p>
@@ -52,8 +49,7 @@ function ClassroomView(props) {
                 <div className="card-body">
                   <h5 className="card-title">{p.title}</h5>
                   <h6 className="card-text">
-                    By
-                    {projectAuthorName(p)}
+                    {`By ${projectAuthorName(p)}`}
                   </h6>
                   <Link
                     to={`/student-projects/${p.id}`}

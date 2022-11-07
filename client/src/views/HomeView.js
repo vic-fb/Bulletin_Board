@@ -2,26 +2,27 @@ import React from 'react';
 import './HomeView.css';
 import NavDropdownMenu from '../components/NavDropdownMenu';
 
-function HomeView(props) {
+function HomeView({ classrooms, getOptionsCb, user }) {
   return (
     <div className="HomeView">
       <h1>Welcome to Bulletin Board!</h1>
 
-      <p>Choose a classroom from the menu below to get started.</p>
+      <p>{`Hi, ${user.first_name}!`}</p>
+      <p>Choose an option from the menu below to get started.</p>
       <div className="dropdown mx-auto">
         <a
-          className="btn btn-info dropdown-toggle"
+          className="btn btn-secondary dropdown-toggle"
           href="#"
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Choose a classroom
+          Choose an option
         </a>
 
         <NavDropdownMenu
-          classrooms={props.classrooms}
-          getOptionsCb={props.getOptionsCb}
+          classrooms={classrooms}
+          getOptionsCb={getOptionsCb}
         />
       </div>
     </div>
