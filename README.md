@@ -14,7 +14,7 @@
   DB_HOST = localhost
   DB_NAME = bulletin_board
   DB_USER = root
-  DB_PASSWORD = root
+  DB_PASS = root
   ```
 
 - To run the database: Type mysql into the terminal and run the following command:
