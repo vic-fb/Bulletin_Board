@@ -46,7 +46,6 @@ router.post('/', async (req, res) => {
 
 /* PUT existing project with new project content */
 router.put('/:id', async (req, res) => {
-  console.log(req);
   const sql = `
       UPDATE student_projects
       SET
