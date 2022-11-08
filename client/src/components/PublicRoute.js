@@ -9,7 +9,7 @@ function PublicRoute({ children }) {
 
   // Render child component(s)
   return (
-    { children }
+    children
   );
 }
 
