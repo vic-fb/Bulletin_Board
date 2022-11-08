@@ -47,6 +47,26 @@ router.post('/login', async (req, res) => {
   }
 });
 
-//silentlogin pass token in body
+router.post('/silent-login', async (req, res) => {
+  const { token } = req.body;
+  const decoded = jwt.verify(token, SECRET_KEY);
+  const userId = decoded.userId;
+  console.log(userId)
+  try {
+    let results = await db(`SELECT * FROM users WHERE id = '${userId}'`);
+    if (results.data.length === 0) {
+      res.status(401).send({ error: 'Login failed' });
+    } else {
+      const {password, id, ...userData} = results.data[0];  // the user's row/record from the DB
+        res.send({
+          message: 'Login succeeded',
+          token: token,
+          user: {id, ...userData}
+        });
+    }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
+import emailjs from '@emailjs/browser';
 import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
 import ClassroomView from './views/ClassroomView';
@@ -11,7 +12,8 @@ import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
 import Local from './helpers/Local';
 import {
-  getUsers, getProjects, getClassrooms, logUserIn, addClassroom, addUser, createProject,
+  getUsers, getProjects, getClassrooms, logUserIn,
+  addClassroom, addUser, createProject, silentLogUserIn,
 } from './api';
 import PublicRoute from './components/PublicRoute';
 
@@ -32,10 +34,21 @@ function App({ toggleViewCb, toggleView }) {
       setLoginErrorMsg('Login failed');
     } else {
       Local.saveUserInfo(response.token, response.user);
-      // I should only save token, silent login and request user
       setUser(response.user);
       setLoginErrorMsg('');
-      navigate('/'); // add if somewhere here
+      navigate('/');
+    }
+  }
+
+  async function doSilentLogin(token) {
+    const response = await silentLogUserIn(token);
+    if (isError(response)) {
+      setLoginErrorMsg('Login failed');
+    } else {
+      Local.saveUserInfo(token, response.user);
+      setUser(response.user);
+      setLoginErrorMsg('');
+      navigate('/'); // may want students to navigate somewhere else
     }
   }
 
@@ -99,10 +112,16 @@ function App({ toggleViewCb, toggleView }) {
 
   const addStudent = async (newUser) => {
     try {
-      const { id } = await addUser(newUser);
+      const { id, token } = await addUser(newUser);
       if (newUser.role === 'student') {
         const projects = await createProject({ ...newUser, id });
         setStudentProjects(projects);
+        emailjs.send('service_2v3uzwt', 'template_ehvx5mk', {
+          to_name: newUser.first_name,
+          from_name: `${user.first_name} ${user.last_name}`,
+          message: `http://localhost:3000/login?token=${token}`,
+          to_email: newUser.email,
+        }, '5eCaYXFyYInKODrBQ');
         const usersData = await getUsers();
         setUsers(usersData);
       }
@@ -121,7 +140,8 @@ function App({ toggleViewCb, toggleView }) {
           element={(
             <PublicRoute>
               <LoginView
-                loginCb={(u, p) => doLogin(u, p)}
+                loginCb={doLogin}
+                silentLoginCb={doSilentLogin}
                 loginError={loginErrorMsg}
               />
             </PublicRoute>

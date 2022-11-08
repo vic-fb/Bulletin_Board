@@ -1,8 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function LoginView({ loginError, loginCb }) {
+function LoginView({ loginError, loginCb, silentLoginCb }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [token, setToken] = useState(null);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const paramsToken = params.get('token');
+
+  useEffect(() => setToken(paramsToken), []);
+  if (token) {
+    silentLoginCb(token);
+  }
 
   function handleChange(event) {
     const { name, value } = event.target;

@@ -32,6 +32,7 @@ export const getClassrooms = () => getRequest('/classrooms');
 export const getProjects = () => getRequest('/student-projects');
 
 export const logUserIn = (password, email) => postRequest('/login', { password, email });
+export const silentLogUserIn = (token) => postRequest('/silent-login', { token });
 export const addClassroom = (newClassroom) => postRequest('/classrooms', newClassroom);
 export const addUser = (newUser) => postRequest('/users', newUser);
 export const createProject = (newUser) => {
