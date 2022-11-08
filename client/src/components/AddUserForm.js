@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import UserFormDropdownMenu from './UserFormDropdownMenu';
 
-function AddUserForm(props) {
+function AddUserForm({ addUserCb, classrooms, getOptionsCb }) {
   const EMPTY_FORM = {
     first_name: '',
     last_name: '',
-    role: '',
+    email: '',
+    role: 'student',
     classroom_id: null,
   };
 
   const [userFormData, setUserFormData] = useState(EMPTY_FORM);
-  const navigate = useNavigate();
 
   function handleChange(event) {
     const { value } = event.target;
@@ -25,69 +24,55 @@ function AddUserForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.addUserCb(userFormData);
+    addUserCb(userFormData);
     setUserFormData(EMPTY_FORM);
-    navigate(`/classrooms/${userFormData.classroom_id}`);
   }
 
   return (
     <div className="AddUserForm">
       <form onSubmit={handleSubmit}>
-        <label>
+        <div className="dropdown">
+          <label>Classroom</label>
+          <UserFormDropdownMenu
+            userFormData={userFormData}
+            getOptionsCb={getOptionsCb}
+            classrooms={classrooms}
+          />
+        </div>
+        <label htmlFor="first_name">
           First Name
           <input
             type="text"
             name="first_name"
+            required
             value={userFormData.first_name}
             onChange={(e) => handleChange(e)}
           />
         </label>
 
-        <label>
+        <label htmlFor="last_name">
           Last Name
           <input
             type="text"
             name="last_name"
             value={userFormData.last_name}
+            required
             onChange={(e) => handleChange(e)}
           />
         </label>
 
-        <label>Role</label>
-        <label className="radio-button">
+        <label htmlFor="email">
+          Email
           <input
-            className="radio-button-input"
-            type="radio"
-            name="role"
-            value="teacher"
-            checked={userFormData.role === 'teacher'}
+            type="email"
+            name="email"
+            value={userFormData.email}
+            required
             onChange={(e) => handleChange(e)}
           />
-          Teacher
         </label>
-        <label className="radio-button">
-          <input
-            className="radio-button-input"
-            type="radio"
-            name="role"
-            value="student"
-            checked={userFormData.role === 'student'}
-            onChange={(e) => handleChange(e)}
-          />
-          Student
-        </label>
-
-        <div className="dropdown">
-          <label>Select a Classroom</label>
-          <UserFormDropdownMenu
-            userFormData={userFormData}
-            getOptionsCb={props.getOptionsCb}
-            classrooms={props.classrooms}
-          />
-        </div>
-
         <button type="submit" className="btn btn-info">
-          Add User
+          Add Student
         </button>
       </form>
     </div>
