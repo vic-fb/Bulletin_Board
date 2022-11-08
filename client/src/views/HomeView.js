@@ -7,7 +7,7 @@ function HomeView({ classrooms, getOptionsCb, user }) {
     <div className="HomeView">
       <h1>Welcome to Bulletin Board!</h1>
 
-      <p>{`Hi, ${user.first_name}!`}</p>
+      <p>{user && `Hi, ${user.first_name}!`}</p>
       <p>Choose a classroom from the menu below to get started.</p>
       <div className="dropdown mx-auto">
         <a

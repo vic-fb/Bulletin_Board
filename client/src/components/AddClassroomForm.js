@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function AddClassroomForm(props) {
+function AddClassroomForm({ addClassroomCb }) {
   const EMPTY_FORM = {
     classroom_name: '',
     assignment_title: '',
@@ -24,7 +24,7 @@ function AddClassroomForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.addClassroomCb(classroomFormData);
+    addClassroomCb(classroomFormData);
     setClassroomFormData(EMPTY_FORM);
     navigate('/');
   }
@@ -33,37 +33,39 @@ function AddClassroomForm(props) {
     // upon log-in, user_id will be automatically collected
     <div className="AddTeacherForm">
       <form onSubmit={handleSubmit}>
-        <label>
+        <label htmlFor="classroom_name">
           Classroom Name
           <input
             type="text"
             name="classroom_name"
             value={classroomFormData.classroom_name}
             onChange={(e) => handleChange(e)}
+            required
           />
         </label>
 
-        <label>
+        <label htmlFor="assignment_title">
           Assignment Title
           <input
             type="text"
             name="assignment_title"
             value={classroomFormData.assignment_title}
             onChange={(e) => handleChange(e)}
+            required
           />
         </label>
 
-        <label>
+        <label htmlFor="assignment_desc">
           Assignment Description
           <textarea
-            type="text"
             name="assignment_desc"
             value={classroomFormData.assignment_desc}
             onChange={(e) => handleChange(e)}
+            className="d-block w-100"
           />
         </label>
 
-        <button type="submit" className="btn btn-info">
+        <button type="submit" className="btn btn-info d-block">
           Add Classroom
         </button>
       </form>

@@ -48,18 +48,21 @@ function UpdateAssignmentForm({ classrooms, updateAssignmentCb, getOptionsCb }) 
     <div className="UpdateAssignmentForm">
       <form onSubmit={handleSubmit}>
         <div className="dropdown">
-          <label htmlFor="classroom">Classroom</label>
-          <select
-            className="form-select"
-            aria-label="Default select example"
-            id="classroom"
-            name="id"
-            onClick={handleClick}
-            required
-          >
-            <option value="" selected disabled>Select a classroom</option>
-            {options}
-          </select>
+          <label htmlFor="classroom">
+            Classroom
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              id="classroom"
+              name="id"
+              onClick={handleClick}
+              required
+              defaultValue=""
+            >
+              <option value="" disabled>Select a classroom</option>
+              {options}
+            </select>
+          </label>
         </div>
 
         <label htmlFor="assignment_title">
@@ -69,6 +72,7 @@ function UpdateAssignmentForm({ classrooms, updateAssignmentCb, getOptionsCb }) 
             name="assignment_title"
             value={assignmentFormData.assignment_title}
             onChange={(e) => handleChange(e)}
+            required
           />
         </label>
 
@@ -76,12 +80,14 @@ function UpdateAssignmentForm({ classrooms, updateAssignmentCb, getOptionsCb }) 
           Assignment Description
           <textarea
             name="assignment_desc"
+            id="assignment_desc"
             value={assignmentFormData.assignment_desc}
             onChange={(e) => handleChange(e)}
+            className="d-block w-100"
           />
         </label>
 
-        <button type="submit" className="btn btn-info">
+        <button type="submit" className="btn btn-info d-block">
           Update Assignment
         </button>
       </form>

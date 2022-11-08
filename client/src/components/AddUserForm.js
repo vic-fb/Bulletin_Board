@@ -11,6 +11,7 @@ function AddUserForm({ addUserCb, classrooms, getOptionsCb }) {
   };
 
   const [userFormData, setUserFormData] = useState(EMPTY_FORM);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   function handleChange(event) {
     const { value } = event.target;
@@ -25,6 +26,7 @@ function AddUserForm({ addUserCb, classrooms, getOptionsCb }) {
   function handleSubmit(event) {
     event.preventDefault();
     addUserCb(userFormData);
+    setShowSuccess(true);
     setUserFormData(EMPTY_FORM);
   }
 
@@ -32,12 +34,14 @@ function AddUserForm({ addUserCb, classrooms, getOptionsCb }) {
     <div className="AddUserForm">
       <form onSubmit={handleSubmit}>
         <div className="dropdown">
-          <label>Classroom</label>
-          <UserFormDropdownMenu
-            userFormData={userFormData}
-            getOptionsCb={getOptionsCb}
-            classrooms={classrooms}
-          />
+          <label>
+            Classroom
+            <UserFormDropdownMenu
+              userFormData={userFormData}
+              getOptionsCb={getOptionsCb}
+              classrooms={classrooms}
+            />
+          </label>
         </div>
         <label htmlFor="first_name">
           First Name
@@ -71,10 +75,15 @@ function AddUserForm({ addUserCb, classrooms, getOptionsCb }) {
             onChange={(e) => handleChange(e)}
           />
         </label>
-        <button type="submit" className="btn btn-info">
+        <button type="submit" className="btn btn-info d-block">
           Add Student
         </button>
       </form>
+      {showSuccess && (
+      <div className="alert alert-success mt-4" role="alert">
+        New student added
+      </div>
+      )}
     </div>
   );
 }
