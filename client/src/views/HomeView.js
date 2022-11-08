@@ -8,7 +8,7 @@ function HomeView({ classrooms, getOptionsCb, user }) {
       <h1>Welcome to Bulletin Board!</h1>
 
       <p>{`Hi, ${user.first_name}!`}</p>
-      <p>Choose an option from the menu below to get started.</p>
+      <p>Choose a classroom from the menu below to get started.</p>
       <div className="dropdown mx-auto">
         <a
           className="btn btn-secondary dropdown-toggle"
@@ -17,7 +17,7 @@ function HomeView({ classrooms, getOptionsCb, user }) {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Choose an option
+          Choose a classroom
         </a>
 
         <NavDropdownMenu

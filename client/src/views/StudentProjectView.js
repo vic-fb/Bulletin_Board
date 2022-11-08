@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import StudentProjectInfo from '../components/StudentProjectInfo';
 
-function StudentProjectView({ user, studentProjects }) {
+function StudentProjectView({ user, studentProjects, users }) {
   const [view, setView] = useState(true);
 
   /* This function makes it so the StudentView displays either the info of the student's current
@@ -20,6 +20,7 @@ function StudentProjectView({ user, studentProjects }) {
           user={user}
           studentProjects={studentProjects}
           toggleViewCb={toggleView}
+          users={users}
         />
       ) : (
         <Outlet context={[toggleView]} />

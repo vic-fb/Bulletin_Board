@@ -4,11 +4,8 @@ import AddUserForm from '../components/AddUserForm';
 import UpdateAssignmentForm from '../components/UpdateAssignmentForm';
 import './TeacherAdminView.css';
 
-// This view contains 3 form components: AddClassroomForm, AddUserForm, and UpdateAssignmentForm.
-
 function TeacherAdminView({
-  addUserCb, classrooms, getOptionsCb, users,
-  addInitialProjectCb, addClassroomCb, updateAssignmentCb,
+  addUserCb, classrooms, getOptionsCb, addClassroomCb, updateAssignmentCb,
 }) {
   return (
     <div className="TeacherAdminView">
@@ -20,13 +17,11 @@ function TeacherAdminView({
         </div>
 
         <div className="col2">
-          <h2>Add a User</h2>
+          <h2>Add a Student</h2>
           <AddUserForm
             addUserCb={addUserCb}
             classrooms={classrooms}
             getOptionsCb={getOptionsCb}
-            users={users}
-            addInitialProjectCb={addInitialProjectCb}
           />
         </div>
 

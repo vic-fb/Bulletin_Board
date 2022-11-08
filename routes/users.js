@@ -2,6 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 const db = require('../model/helper');
+const jwt = require("jsonwebtoken");
+const SECRET_KEY = process.env.SECRET_KEY || 'this weak (!!) secret key'
+const nodemailer = require ("nodemailer");
 
 /* GET users listing. */
 router.get('/', async (req, res) => {
@@ -32,12 +35,15 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   const sql = `
     INSERT INTO users (first_name, last_name, email, password, role, classroom_id)
-    VALUES ('${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.password}','${req.body.role}', ${req.body.classroom_id})
+    VALUES ('${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.password}','${req.body.role}', ${req.body.classroom_id});
+    SELECT LAST_INSERT_ID();
   `;
-
   try {
-    const { insertId } = await db(sql);
-    res.status(201).send({ id: insertId });
+    const result = await db(sql);
+    const insertId = result.data[0].insertId;
+    const token = jwt.sign({userId: insertId}, SECRET_KEY);
+    console.log(token);
+    res.status(201).send({id: insertId});
   } catch (err) {
     res.status(500).send({ error: err.message });
   }

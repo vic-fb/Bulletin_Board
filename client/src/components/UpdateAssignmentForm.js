@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function UpdateAssignmentForm(props) {
+function UpdateAssignmentForm({ classrooms, updateAssignmentCb, getOptionsCb }) {
   const navigate = useNavigate();
 
   const [assignmentFormData, setAssignmentFormData] = useState([]);
@@ -10,14 +10,14 @@ function UpdateAssignmentForm(props) {
   useEffect(() => {
     const temp = generateOptions();
     setOptions(temp);
-    props.getOptionsCb(options);
-  }, [props.classrooms]); // call whenever classrooms changes
+    getOptionsCb(options);
+  }, [classrooms]); // call whenever classrooms changes
 
   /* had to create generateOptions() outside rendering statement b/c page was
     being drawn before classrooms was loaded, so had to create options state and
     useEffect function to make sure data was available before page was rendered */
   function generateOptions() {
-    return props.classrooms.map((c) => (
+    return classrooms.map((c) => (
       <option className="dropdown-item" key={c.id} name="id" value={c.id}>
         {c.classroom_name}
       </option>
@@ -40,7 +40,7 @@ function UpdateAssignmentForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.updateAssignmentCb(assignmentFormData);
+    updateAssignmentCb(assignmentFormData);
     navigate(`/classrooms/${assignmentFormData.id}`);
   }
 
@@ -48,20 +48,21 @@ function UpdateAssignmentForm(props) {
     <div className="UpdateAssignmentForm">
       <form onSubmit={handleSubmit}>
         <div className="dropdown">
-          <label>Select a Classroom</label>
+          <label htmlFor="classroom">Classroom</label>
           <select
             className="form-select"
             aria-label="Default select example"
             id="classroom"
             name="id"
             onClick={handleClick}
+            required
           >
-            <option selected />
+            <option value="" selected disabled>Select a classroom</option>
             {options}
           </select>
         </div>
 
-        <label>
+        <label htmlFor="assignment_title">
           Assignment Title
           <input
             type="text"
@@ -71,10 +72,9 @@ function UpdateAssignmentForm(props) {
           />
         </label>
 
-        <label>
+        <label htmlFor="assignment_desc">
           Assignment Description
           <textarea
-            type="text"
             name="assignment_desc"
             value={assignmentFormData.assignment_desc}
             onChange={(e) => handleChange(e)}
@@ -82,7 +82,7 @@ function UpdateAssignmentForm(props) {
         </label>
 
         <button type="submit" className="btn btn-info">
-          Update Project
+          Update Assignment
         </button>
       </form>
     </div>

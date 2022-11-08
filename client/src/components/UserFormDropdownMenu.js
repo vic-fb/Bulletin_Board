@@ -37,7 +37,9 @@ function UserFormDropdownMenu({ getOptionsCb, classrooms, userFormData }) {
         id="classroom"
         name="classroom"
         onClick={handleAddUser}
+        required
       >
+        <option value="" selected disabled>Select a classroom</option>
         {options}
       </select>
     </div>
