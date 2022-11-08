@@ -20,7 +20,7 @@ function App({ toggleViewCb, toggleView }) {
   const [classrooms, setClassrooms] = useState([]);
   const [studentProjects, setStudentProjects] = useState([]);
   const [options, setOptions] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
   const [loginErrorMsg, setLoginErrorMsg] = useState('');
   const isError = (response) => typeof response === 'string';
 
@@ -32,6 +32,7 @@ function App({ toggleViewCb, toggleView }) {
       setLoginErrorMsg('Login failed');
     } else {
       Local.saveUserInfo(response.token, response.user);
+      // I should only save token, silent login and request user
       setUser(response.user);
       setLoginErrorMsg('');
       navigate('/'); // add if somewhere here
@@ -101,7 +102,6 @@ function App({ toggleViewCb, toggleView }) {
       const { id } = await addUser(newUser);
       if (newUser.role === 'student') {
         const projects = await createProject({ ...newUser, id });
-        // it used to navigate to the classroom when adding an initial project?
         setStudentProjects(projects);
         const usersData = await getUsers();
         setUsers(usersData);
@@ -155,6 +155,7 @@ function App({ toggleViewCb, toggleView }) {
             <PrivateRoute>
               <StudentProjectView
                 user={user}
+                users={users}
                 studentProjects={studentProjects}
                 toggleViewCb={toggleView}
               />
@@ -185,7 +186,6 @@ function App({ toggleViewCb, toggleView }) {
                 classrooms={classrooms}
                 getOptionsCb={getOptions}
                 users={users}
-                addInitialProjectCb={createProject}
                 updateAssignmentCb={updateAssignment}
               />
             </PrivateRoute>
