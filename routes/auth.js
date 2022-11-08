@@ -30,7 +30,6 @@ router.post('/login', async (req, res) => {
       if (passwordsEqual) {
         // Passwords match
         const payload = { userId: id };
-        console.log(payload)
         // Create token containing user ID
         const token = jwt.sign(payload, SECRET_KEY);
         res.send({
@@ -47,5 +46,7 @@ router.post('/login', async (req, res) => {
     res.status(500).send({ error: err.message });
   }
 });
+
+//silentlogin pass token in body
 
 module.exports = router;
