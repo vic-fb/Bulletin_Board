@@ -47,9 +47,13 @@ INSERT INTO classrooms (classroom_name, assignment_title, assignment_desc)
     VALUES ("Mr. Goleman's 5th Grade Classroom", 'Ancient Egpyt Project', 'Students will research a topic of their choice and create a project to show their findings.');
 
 INSERT INTO users (first_name, last_name, email, password, role, classroom_id)
-    VALUES ('Michael', 'Goleman', 'mrgoleman@test.ed', 'password', 'teacher', 1), ('Sara', 'Norgaard', 'student@test.ed', 'random','student', 1), ('Stu', 'Selwig','student@test.ed', 'random', 'student', 3);
+    VALUES ('Michael', 'Goleman', 'mrgoleman@test', null, 'teacher', null),
+    ('Sara', 'Norgaard', 'sara@test', null,'student', 1),
+    ('Stu', 'Selwig','stu@test', null, 'student', 3),
+    ('Lauren','Goldstein', 'lauren@test', null, 'student', 2);
 
 INSERT INTO student_projects (user_id, title, description, image_url, project_url, classroom_id)
     VALUES (2, 'Mummies', 'I researched how mummies were made in Ancient Egypt', 'https://media.istockphoto.com/photos/close-up-of-ancient-mummy-casket-picture-id139982295?k=20&m=139982295&s=612x612&w=0&h=pfmGRS8icf9lncFeljSyWJdAYJDIL-8eiLA3aqJpR60=', 'https://www.bbc.com/news/world-middle-east-56926005', 1),
-    (3, 'Triangles', 'I found triangles in nature', 'https://i0.wp.com/thesmarthappyproject.com/wp-content/uploads/2016/05/IMG_0007.jpg?resize=768%2C1024&ssl=1', 'https://thesmarthappyproject.com/triangles/', 3);
+    (3, 'Triangles', 'I found triangles in nature', 'https://i0.wp.com/thesmarthappyproject.com/wp-content/uploads/2016/05/IMG_0007.jpg?resize=768%2C1024&ssl=1', 'https://thesmarthappyproject.com/triangles/', 3),
+    (4, 'Bulletin Board', 'A virtual bulletin board to display student projects according to the current class assignment.', 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80', 'http://localhost:3000/', 2);
 SET foreign_key_checks = 1;
