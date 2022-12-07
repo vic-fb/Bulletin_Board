@@ -8,7 +8,9 @@ function HomeView({ classrooms, getOptionsCb, user }) {
       <h1>Welcome to Bulletin Board!</h1>
 
       <p>{user && `Hi, ${user.first_name}!`}</p>
-      <p>Choose a classroom from the menu below to get started.</p>
+      <p>{user && user.role === 'teacher' && 'View a classroom from the menu below, or head to the Teacher Admin Hub to get started.'}</p>
+      <p>{user && user.role === 'student' && 'Select an option from the menu above to get started.'}</p>
+      {user && user.role === 'teacher' && (
       <div className="dropdown mx-auto">
         <a
           className="btn btn-secondary dropdown-toggle"
@@ -25,6 +27,7 @@ function HomeView({ classrooms, getOptionsCb, user }) {
           getOptionsCb={getOptionsCb}
         />
       </div>
+      )}
     </div>
   );
 }
