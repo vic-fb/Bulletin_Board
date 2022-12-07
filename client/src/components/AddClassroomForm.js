@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function AddClassroomForm({ addClassroomCb }) {
   const EMPTY_FORM = {
@@ -7,8 +6,6 @@ function AddClassroomForm({ addClassroomCb }) {
     assignment_title: '',
     assignment_desc: '',
   };
-
-  const navigate = useNavigate();
 
   const [classroomFormData, setClassroomFormData] = useState(EMPTY_FORM);
 
@@ -26,7 +23,6 @@ function AddClassroomForm({ addClassroomCb }) {
     event.preventDefault();
     addClassroomCb(classroomFormData);
     setClassroomFormData(EMPTY_FORM);
-    navigate('/');
   }
 
   return (
@@ -51,7 +47,6 @@ function AddClassroomForm({ addClassroomCb }) {
             name="assignment_title"
             value={classroomFormData.assignment_title}
             onChange={(e) => handleChange(e)}
-            required
           />
         </label>
 
