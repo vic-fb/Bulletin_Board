@@ -9,6 +9,7 @@ import StudentProjectView from './views/StudentProjectView';
 import StudentAdminView from './views/StudentAdminView';
 import TeacherAdminView from './views/TeacherAdminView';
 import PrivateRoute from './components/PrivateRoute';
+import TeacherRoute from './components/TeacherRoute';
 import NavBar from './components/NavBar';
 import Local from './helpers/Local';
 import {
@@ -133,7 +134,13 @@ function App({ toggleViewCb, toggleView }) {
   // create student views and teacher routes (in addition to private route?)
   return (
     <div className="App">
-      <NavBar classrooms={classrooms} getOptionsCb={getOptions} user={user} onLogout={logUserOut} />
+      <NavBar
+        classrooms={classrooms}
+        getOptionsCb={getOptions}
+        user={user}
+        onLogout={logUserOut}
+        studentProjects={studentProjects}
+      />
       <Routes>
         <Route
           path="/login"
@@ -199,7 +206,7 @@ function App({ toggleViewCb, toggleView }) {
         <Route
           path="teacher-admin"
           element={(
-            <PrivateRoute>
+            <TeacherRoute>
               <TeacherAdminView
                 addClassroomCb={addNewClassroom}
                 addUserCb={addStudent}
@@ -208,7 +215,7 @@ function App({ toggleViewCb, toggleView }) {
                 users={users}
                 updateAssignmentCb={updateAssignment}
               />
-            </PrivateRoute>
+            </TeacherRoute>
 
               )}
         />
