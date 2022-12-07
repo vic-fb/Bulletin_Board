@@ -53,7 +53,7 @@ function ClassroomView({ classrooms, studentProjects, users }) {
                   </h6>
                   <Link
                     to={`/student-projects/${p.id}`}
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                   >
                     View Project
                   </Link>
