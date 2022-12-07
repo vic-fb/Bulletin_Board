@@ -2,7 +2,7 @@ import React from 'react';
 import UpdateProjectForm from '../components/UpdateProjectForm';
 import './StudentAdminView.css';
 
-function StudentAdminView({ toggleViewCb, studentProjects, updateProjectCb }) {
+function StudentAdminView({ studentProjects, updateProjectCb }) {
   return (
     <div className="StudentAdminView">
       <h2>Update Your Project</h2>
@@ -12,7 +12,6 @@ function StudentAdminView({ toggleViewCb, studentProjects, updateProjectCb }) {
       </h3>
 
       <UpdateProjectForm
-        toggleViewCb={toggleViewCb}
         studentProjects={studentProjects}
         updateProjectCb={updateProjectCb}
       />

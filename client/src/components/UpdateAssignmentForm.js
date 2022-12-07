@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function UpdateAssignmentForm({ classrooms, updateAssignmentCb, getOptionsCb }) {
-  const navigate = useNavigate();
-
   const [assignmentFormData, setAssignmentFormData] = useState([]);
   const [options, setOptions] = useState([]);
+  function generateOptions() {
+    return classrooms.map((c) => (
+      <option className="dropdown-item" key={c.id} name="id" value={c.id}>
+        {c.classroom_name}
+      </option>
+    ));
+  }
 
   useEffect(() => {
     const temp = generateOptions();
@@ -16,13 +20,6 @@ function UpdateAssignmentForm({ classrooms, updateAssignmentCb, getOptionsCb }) 
   /* had to create generateOptions() outside rendering statement b/c page was
     being drawn before classrooms was loaded, so had to create options state and
     useEffect function to make sure data was available before page was rendered */
-  function generateOptions() {
-    return classrooms.map((c) => (
-      <option className="dropdown-item" key={c.id} name="id" value={c.id}>
-        {c.classroom_name}
-      </option>
-    ));
-  }
 
   function handleChange(event) {
     const { value } = event.target;
@@ -41,7 +38,6 @@ function UpdateAssignmentForm({ classrooms, updateAssignmentCb, getOptionsCb }) 
   function handleSubmit(event) {
     event.preventDefault();
     updateAssignmentCb(assignmentFormData);
-    navigate(`/classrooms/${assignmentFormData.id}`);
   }
 
   return (

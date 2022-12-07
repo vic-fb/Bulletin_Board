@@ -1,9 +1,10 @@
 const express = require('express');
 
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const db = require('../model/helper');
-const jwt = require("jsonwebtoken");
-const SECRET_KEY = process.env.SECRET_KEY || 'this weak (!!) secret key'
+
+const SECRET_KEY = process.env.SECRET_KEY || 'this weak (!!) secret key';
 
 /* GET users listing. */
 router.get('/', async (req, res) => {
@@ -39,14 +40,13 @@ router.post('/', async (req, res) => {
   `;
   try {
     const result = await db(sql);
-    const insertId = result.data[0].insertId;
-    const token = await jwt.sign({userId: insertId}, SECRET_KEY);
-    res.status(201).send({id: insertId, token});
+    const { insertId } = result.data[0];
+    const token = await jwt.sign({ userId: insertId }, SECRET_KEY);
+    res.status(201).send({ id: insertId, token });
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
-
 
 /* DELETE user */
 router.delete('/:id', async (req, res) => {

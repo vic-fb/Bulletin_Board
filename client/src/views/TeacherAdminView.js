@@ -11,7 +11,7 @@ function TeacherAdminView({
     <div className="TeacherAdminView">
       <h1>Teacher Admin Hub</h1>
       <div className="TeacherAdminGrid">
-        <div className="col1">
+        <div className="col1 px-0">
           <h2>Add a Classroom</h2>
           <AddClassroomForm addClassroomCb={addClassroomCb} />
         </div>

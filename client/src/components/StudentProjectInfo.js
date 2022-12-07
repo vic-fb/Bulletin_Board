@@ -9,7 +9,6 @@ function StudentProjectInfo({
   if (!studentProjects.length) {
     return <h2>Loading</h2>;
   }
-  // Use the student project ID from the URL to find the correct project
   const project = studentProjects.find((p) => p.id === Number(id));
   const owner = users.find((u) => u.id === Number(project.user_id));
 
@@ -19,7 +18,7 @@ function StudentProjectInfo({
         {project.user_id === user.id && (
         <Link
           to="update-project"
-          class="btn btn-outline-warning mt-2 w-auto ms-auto me-3"
+          className="btn btn-outline-warning mt-2 w-auto ms-auto me-3"
           role="button"
           onClick={toggleViewCb}
         >
@@ -32,24 +31,27 @@ function StudentProjectInfo({
         <h2>
           {`Welcome to ${owner.first_name}'s project page!`}
         </h2>
-
+        {!project.title && <h3>No project added yet</h3>}
         <div className="grid">
           <div>
-            <img alt={project.title} src={project.image_url} />
+            {project.image_url && <img alt={project.title} src={project.image_url} />}
           </div>
-          <div className="proj-info align-middle">
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <a
-              className="btn btn-secondary"
-              role="button"
-              href={`${project.project_url}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Check out my project
-            </a>
-          </div>
+          { project.title
+            && (
+              <div className="proj-info align-middle">
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <a
+                  className="btn btn-secondary"
+                  role="button"
+                  href={`${project.project_url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Check out my project
+                </a>
+              </div>
+            )}
         </div>
       </div>
     </div>

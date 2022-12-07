@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useParams, useOutletContext } from 'react-router-dom';
 
-function UpdateProjectForm(props) {
+function UpdateProjectForm({ studentProjects, updateProjectCb }) {
   const { id } = useParams();
 
-  const project = props.studentProjects.find((p) => p.id === Number(id));
+  const project = studentProjects.find((p) => p.id === Number(id));
   const userId = project.user_id;
   const classroomId = project.classroom_id;
 
@@ -33,51 +33,53 @@ function UpdateProjectForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.updateProjectCb(projectFormData);
+    updateProjectCb(projectFormData);
     toggleView();
   }
 
   return (
-    // upon log-in, user_id & classroom_id will be automatically collected
     <div className="UpdateProjectForm">
       <form onSubmit={handleSubmit}>
-        <label>
+        <label htmlFor="title">
           Project Title
           <input
             type="text"
             name="title"
             value={projectFormData.title}
             onChange={(e) => handleChange(e)}
+            required
           />
         </label>
 
-        <label>
+        <label htmlFor="description">
           Project Description
           <textarea
-            type="text"
             name="description"
             value={projectFormData.description}
             onChange={(e) => handleChange(e)}
+            className="d-block w-100"
           />
         </label>
 
-        <label>
+        <label htmlFor="image_url">
           Image Link
           <input
             type="url"
             name="image_url"
             value={projectFormData.image_url}
             onChange={(e) => handleChange(e)}
+            required
           />
         </label>
 
-        <label>
+        <label htmlFor="project_url">
           Project Link
           <input
             type="url"
             name="project_url"
             value={projectFormData.project_url}
             onChange={(e) => handleChange(e)}
+            required
           />
         </label>
 
