@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "migrate": "node model/database.js",
-    "lint": "eslint --fix ./model/ --ext js",
+    "lint": "eslint --fix ./routes/ --ext js",
     "build": "cd client && npm install && npm run build"
   },
   "dependencies": {
