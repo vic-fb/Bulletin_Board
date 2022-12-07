@@ -80,7 +80,7 @@ function AddUserForm({ addUserCb, classrooms, getOptionsCb }) {
         </button>
       </form>
       {showSuccess && (
-      <div className="alert alert-success mt-4" role="alert">
+      <div className="alert alert-success mt-4 alert-dismissible fade show" role="alert">
         New student added
       </div>
       )}
