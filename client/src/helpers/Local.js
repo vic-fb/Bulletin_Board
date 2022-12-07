@@ -32,6 +32,16 @@ class Local {
     return user.id;
   }
 
+  static getUserRole() {
+    const userjson = localStorage.getItem('user');
+    if (!userjson) {
+      return '';
+    }
+
+    const user = JSON.parse(userjson);
+    return user.role;
+  }
+
   static getUsername() {
     const userjson = localStorage.getItem('user');
     if (!userjson) {
