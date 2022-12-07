@@ -3,8 +3,10 @@ import { NavLink } from 'react-router-dom';
 import NavDropdownMenu from './NavDropdownMenu';
 
 function NavBar({
-  user, classrooms, getOptionsCb, onLogout,
+  user, classrooms, getOptionsCb, onLogout, studentProjects,
 }) {
+  const project = studentProjects.find((p) => p.user_id === user?.id);
+
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -51,6 +53,22 @@ function NavBar({
                   Teacher Admin
                 </NavLink>
               </li>
+              )}
+            {user.role === 'student' && project
+              && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to={`student-projects/${project.id}`}>
+                    My project
+                  </NavLink>
+                </li>
+              )}
+            {user.role === 'student'
+              && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to={`classrooms/${user.classroom_id}`}>
+                    My classroom
+                  </NavLink>
+                </li>
               )}
             <li className="nav-item">
               <button className="btn btn-light" type="button" onClick={onLogout}>
