@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function LoginView({ loginError, loginCb, silentLoginCb }) {
   const [email, setEmail] = useState('');
@@ -66,7 +66,10 @@ function LoginView({ loginError, loginCb, silentLoginCb }) {
           </div>
           <button type="submit" className="btn btn-secondary row">Submit</button>
         </form>
-        <div className="row justify-content-center text">Are you a new teacher? <Link to={'/signup'} className="text">Register here</Link></div>
+        <div className="row justify-content-center text">
+          Are you a new teacher?
+          <Link to="/signup" className="text">Register here</Link>
+        </div>
         {
           loginError && (
             <div className="alert alert-danger w-75 mx-auto">

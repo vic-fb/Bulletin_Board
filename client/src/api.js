@@ -31,7 +31,9 @@ export const getUsers = () => getRequest('/users');
 export const getClassrooms = () => getRequest('/classrooms');
 export const getProjects = () => getRequest('/student-projects');
 
-export const signup = ({ firstName, lastName, password, email }) => postRequest('/register', {
+export const signup = ({
+  firstName, lastName, password, email,
+}) => postRequest('/register', {
   first_name: firstName, last_name: lastName, password, email, role: 'teacher',
 });
 export const logUserIn = (password, email) => postRequest('/login', { password, email });
