@@ -1,5 +1,7 @@
 # Bulletin Board
 
+https://zxdvucjami.eu09.qoddiapp.com/
+
 ## Prerequisites:
 
 - npm
