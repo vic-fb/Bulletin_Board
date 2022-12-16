@@ -47,7 +47,7 @@ INSERT INTO classrooms (classroom_name, assignment_title, assignment_desc)
     VALUES ("Mr. Goleman's 5th Grade Classroom", 'Ancient Egpyt Project', 'Students will research a topic of their choice and create a project to show their findings.');
 
 INSERT INTO users (first_name, last_name, email, password, role, classroom_id)
-    VALUES ('Michael', 'Goleman', 'mrgoleman@test', null, 'teacher', null),
+    VALUES ('Michael', 'Goleman', 'mrgoleman@test', '$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W', 'teacher', null),
     ('Sara', 'Norgaard', 'sara@test', null,'student', 1),
     ('Stu', 'Selwig','stu@test', null, 'student', 3),
     ('Lauren','Goldstein', 'lauren@test', null, 'student', 2);
