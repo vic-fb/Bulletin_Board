@@ -4,6 +4,7 @@ import './App.css';
 import emailjs from '@emailjs/browser';
 import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
+import SignupView from './views/SignupView';
 import ClassroomView from './views/ClassroomView';
 import StudentProjectView from './views/StudentProjectView';
 import StudentAdminView from './views/StudentAdminView';
@@ -153,6 +154,17 @@ function App({ toggleViewCb, toggleView }) {
               />
             </PublicRoute>
         )}
+        />
+        <Route
+          path="/signup"
+          element={(
+            <PublicRoute>
+              <SignupView
+                // signupCb={doSignup}
+                silentLoginCb={doSilentLogin}
+              />
+            </PublicRoute>
+          )}
         />
 
         <Route
